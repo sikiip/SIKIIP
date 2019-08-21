@@ -13,7 +13,8 @@ class KontakKaryawanController extends Controller
      */
     public function index()
     {
-        return view('KontakKaryawan.kontak_karyawan');
+        $kontak_karyawan = \App\DataKaryawan::all();
+        return view('KontakKaryawan.kontak_karyawan', ['kontak_karyawan' => $kontak_karyawan]);
     }
 
     /**
