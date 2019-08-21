@@ -1,3 +1,24 @@
+/* Split the screen in half */
+.split {
+  position: fixed;
+  top: 0;
+}
+
+/* Control the left side */
+.left {
+  height: 100%;
+  width: 20%;
+  left: 0;
+  background-color: #111;
+}
+
+/* Control the right side */
+.right {
+  height: 100%;
+  width: 80%;
+  right: 0;
+}
+
 body{
       background-image: url("/image/bglogin.png");
       background-position: center center;
@@ -8,7 +29,6 @@ body{
   }
 
   .login{
-    
       font-family: "poppins", monospace;
       height: 100%;
       width: 300px;

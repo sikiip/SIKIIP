@@ -19,7 +19,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                <input id="email" type="email" class="username" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" type="email" class="username" placeholder="Email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                             </div>
                         </div>
 
@@ -31,7 +31,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
-                                <input id="password" type="password" class="password" name="password" required autocomplete="current-password">
+                                <input id="password" type="password" class="password" placeholder="Password" name="password" required autocomplete="current-password">
                             </div>
                         </div>
                             <!-- Button Submit -->

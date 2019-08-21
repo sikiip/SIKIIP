@@ -43,9 +43,9 @@
                                 <button type="submit" class="button">
                                     {{ __('Kirim email ubah password') }}
                                 </button>
-                                <button class="button-backtologin">
-                                    <a id="backlogin" style="text-decoration:none;" href="/login">{{ __('Login') }}</a>
-                                </button>
+                                <a href="/login"><button type="button" class="button-backtologin">
+                                    Login
+                                </button></a>
                             </div>
                         </div>
                     </form>

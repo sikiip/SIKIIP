@@ -1,9 +1,84 @@
+.username{
+  width: 120px;
+  font-size:25px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  resize: horizontal;
+}
+
+
+img {
+    max-width: 75%;
+    max-height: 75%;
+}
+
+.portrait {
+    height: 80px;
+    width: 30px;
+}
+
+.landscape {
+    height: 30px;
+    width: 80px;
+}
+
+.square {
+    height: 75px;
+    width: 75px;
+}
+
+.modal-transparent {
+  background: transparent;
+}
+
+.modal-transparent .modal-content {
+  background: transparent;
+}
+
+.modal-backdrop.modal-backdrop-transparent {
+  background:;
+}
+
+.modal-backdrop.modal-backdrop-transparent.in {
+  opacity: .3;
+  filter: alpha(opacity=90);
+}
+
+.dtHorizontalExampleWrapper {
+max-width: 600px;
+margin: 0 auto;
+}
+#dtHorizontalExample th, td {
+white-space: nowrap;
+}
+
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before {
+bottom: .5em;
+}
+
+
+#tambahkaryawan{
+     position: relative;
+     float: right;
+     margin-right: 1%;
+}
 
 .text-center .credits p {
     font-size: 14px;
     color: black;
     margin-top: 0px;
-
+    margin-left: 280px;
 }
 .welcome {
     text-align: center;
@@ -58,6 +133,7 @@
     border: 2px solid #688a7e;
     display: inline-block;
     width:80px;
+    max-height: 80px;
     margin-top:3px;
     margin-left: 20px;
     margin-right: 18px;
@@ -1478,7 +1554,9 @@ a:focus {
 
 .carousel-inner>.item>a>img,
 .carousel-inner>.item>img,
-.img-responsive,
+.img-responsive{
+    object-fit: cover;
+}
 .thumbnail a>img,
 .thumbnail>img {
     display: block;
@@ -1496,8 +1574,26 @@ a:focus {
     -o-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
     display: inline-block;
-    max-width: 100%;
-    height: auto
+    max-width: 200px;
+    height: 300px;
+}
+
+.img-data {
+    padding: 4px;
+    line-height: 1.42857143;
+    background-color: #EEE;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    display: inline-block;
+    max-width: 200px;
+    height: 200px;
+}
+
+.img-data:hover{
+
 }
 
 .list-inline,
@@ -2327,9 +2423,7 @@ pre code {
         width: 58.33333333%
     }
     .col-sm-6 {
-        width: 50%;
-        text-align: center;
-        margin: 0% 5% 0% 28% ;
+        width: 50%
     }
     .col-sm-5 {
         width: 41.66666667%
@@ -6635,7 +6729,10 @@ button.close {
 }
 
 .modal-body {
-    position: relative
+    position: relative;
+    max-width :100%;
+    max-height: 100%;
+
 }
 
 .popover,
@@ -8258,7 +8355,7 @@ canvas {
 }
 
 .be-wrapper {
-    min-height: 91%;
+    min-height: 95%;
     padding-top: 0px;
 }
 
@@ -9365,12 +9462,7 @@ canvas {
     left: 0;
     position: absolute;
     border-right: 1px solid #e3e3e3;
-   /* background-image:url('../img/sidebar3.jpg'); 
-    background-repeat:no-repeat;
-    background-size:100% 100%;*/
-    /*height: 100%;*/
-    bottom: 0px;
-    top: 0px;
+
 }
 
 .be-collapsible-sidebar-collapsed .be-left-sidebar {
@@ -9381,8 +9473,7 @@ canvas {
     display: table;
     table-layout: fixed;
     width: 100%;
-    height: 100%;
-
+    height: 100%
 }
 
 .be-left-sidebar .left-sidebar-spacer {
@@ -9406,7 +9497,6 @@ canvas {
     background-image:url('../img/sidebar3.jpg'); 
     background-repeat:repeat;
     background-size:100% 100%;
-
 }
 
 .be-left-sidebar .left-sidebar-content {
@@ -9416,7 +9506,6 @@ canvas {
     left: 0;
     right: 0;
     padding-top: 8px
-
 }
 
 .be-collapsible-sidebar-collapsed .be-left-sidebar .left-sidebar-content {
@@ -9460,7 +9549,7 @@ canvas {
 }
 
 .be-left-sidebar .sidebar-elements .divider {
-    padding: 10px 20px 0;
+    padding: 0px 20px 0;
     color: #000000;
     line-height: 30px;
     font-weight: 600;
@@ -9755,7 +9844,7 @@ canvas {
         display: block
     }
     .be-left-sidebar .left-sidebar-content {
-        padding-bottom:5%;
+        padding-bottom: 69%;
     }
     .be-left-sidebar .sidebar-elements>li>a {
         text-align: left;
@@ -10629,8 +10718,8 @@ canvas {
 .be-content {
     position: relative;
     left: 0;
-    margin-left: 230px;
-  /*  min-height: 100%*/
+    margin-left: 250px;
+    min-height: 100%
 }
 
 @media (max-width:767px) {
@@ -10652,13 +10741,12 @@ canvas {
 }
 
 .main-content {
-    padding: 25px;
-    margin: 0% 0% 0% 0%;
+    padding: 25px
 }
 
 @media (min-width:768px) and (max-width:991px) {
     .main-content {
-        padding-left: 25px;
+        padding-left: 45px;
         padding-right: 25px;
         padding-top: 30px
     }
