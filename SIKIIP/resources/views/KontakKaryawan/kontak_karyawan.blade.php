@@ -11,7 +11,10 @@
     <link rel="stylesheet" type="text/css" href="assets/lib/perfect-scrollbar/css/perfect-scrollbar.min.css"/>
     <link rel="stylesheet" type="text/css" href="assets/lib/material-design-icons/css/material-design-iconic-font.min.css"/>
     <link rel="stylesheet" type="text/css" href="assets/lib/datatables/css/dataTables.bootstrap.min.css"/>
+
+    <link rel="stylesheet" href="/assets/css/datakaryawan.css" type="text/css"/>
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css"/>
+    
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/lib/jquery.vectormap/jquery-jvectormap-1.2.2.css"/>
     <link rel="stylesheet" type="text/css" href="assets/lib/jqvmap/jqvmap.min.css"/>
@@ -138,9 +141,7 @@
 
       <!-- Konten -->
       <div class="be-content">
-        <div class="page-head">
-          <h2 class="page-head-title">Kontak Karyawan</h2>
-        </div>
+         <h3 class="page-header"> <i class="far fa-id-card"></i><span>Kontak Karyawan</span></h3>
         <div class="main-content container-fluid">
           <div class="row">
             <div class="col-sm-12">
@@ -156,14 +157,41 @@
                        </tr>
                     </thead>
                     <tbody>
-                       @foreach($kontak_karyawan as $kontak)
                       <tr class="odd gradeA">
-                        <td>{{$kontak->nik}}</td>
-                        <td> {{$kontak->nama_karyawan}} </td>
-                        <td>{{$kontak->email}}</td>
-                        <td class="center"> {{$kontak->no_telp}} </td>
+                        <td>1234567098765432</td>
+                        <td>
+                          Adinda Virguinia Ayu Permata Manihuruk
+                        </td>
+                        <td>dindavirguinia@gmail.com</td>
+                        <td class="center"> 085267020933 </td>
                       </tr>
-                      @endforeach
+
+                       <tr class="odd gradeA">
+                        <td>1234567098765432</td>
+                        <td>
+                          Nurma Syanti
+                        </td>
+                        <td>nurmasyanti@gmail.com</td>
+                        <td class="center"> 085544332211 </td>
+                      </tr>
+
+                       <tr class="odd gradeA">
+                        <td>1234567098765432</td>
+                        <td>
+                          Miftahul Firdaus
+                        </td>
+                        <td>miftahulfirdaus@gmail.com</td>
+                        <td class="center"> 085334567890 </td>
+                      </tr>
+
+                       <tr class="odd gradeA">
+                        <td>1234567098765432</td>
+                        <td>
+                          Sulaiman Osman
+                        </td>
+                        <td>sulaimanosman@gmail.com</td>
+                        <td class="center"> 085234567890 </td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>

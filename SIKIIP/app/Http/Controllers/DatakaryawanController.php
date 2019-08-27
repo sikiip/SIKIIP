@@ -36,7 +36,7 @@ class DatakaryawanController extends Controller
           	return view('Datakaryawan.datakaryawan_rincian', ['data_karyawan' => $data_karyawan , 'data_familia' => $data_familia, 'riwayat_pekerjaan' => $riwayat_pekerjaan, 'riwayat_pendidikan' => $riwayat_pendidikan, 'foto_ijazah_sertifikat' => $foto_ijazah_sertifikat, 'foto_verklarin' => $foto_verklarin]);
     }
 
-        public function checknik(Request $request){
+        public function check_nik(Request $request){
             if($request->get('nik')){
                 $nik = $request->get('nik');
                 $data = DB::Table("dataKaryawan")->where('nik', $nik)->count();
@@ -48,7 +48,7 @@ class DatakaryawanController extends Controller
             }
     }
 
-        public function checkemail(Request $request){
+        public function check_email(Request $request){
             if($request->get('email')){
                 $email = $request->get('email');
                 $data = DB::Table("dataKaryawan")->where('email', $email)->count();
@@ -60,9 +60,20 @@ class DatakaryawanController extends Controller
             }
     }
 
+            public function check_id_sidik_jari(Request $request){
+            if($request->get('id_sidik_jari')){
+                $id_sidik_jari = $request->get('id_sidik_jari');
+                $data = DB::Table("dataKaryawan")->where('id_sidik_jari', $id_sidik_jari)->count();
+                if($data > 0){
+                    echo 'not_unique';
+                } else {
+                    echo 'unique';
+                }
+            }
+    }
+
         public function tambah_data_karyawan(Request $request){
             
-
             \App\DataKaryawan::create($request->all());
 
             $request = $request->all();
@@ -72,9 +83,15 @@ class DatakaryawanController extends Controller
             'email' => $request['email'],
             'role' => $request['role'],
             'password' => Hash::make($request['password']),
-        ]);
+            ]);
             
-            return redirect()->route('datakaryawan');
+            //notifikasi untuk toastr ketika password atau username salah
+            $notification = array(
+                'message' => 'Data Berhasil di Simpan!',
+                'alert-type' => 'success' 
+            );
+
+            return back()->with($notification);
     }
 
         public function delete_data_karyawan($id){
@@ -98,8 +115,13 @@ class DatakaryawanController extends Controller
                 $data_pekerjaan->delete($data_pekerjaan);
             }
             
-            //masih banyak yag lain!!
-            return redirect()->route('datakaryawan');
+            //notifikasi untuk toastr ketika password atau username salah
+            $notification = array(
+                'message' => 'Data Berhasil di Hapus!',
+                'alert-type' => 'success' 
+            );
+
+            return back()->with($notification);
     }
 
         public function edit_data_pribadi($nik){

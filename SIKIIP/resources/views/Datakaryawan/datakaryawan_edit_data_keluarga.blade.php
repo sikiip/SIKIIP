@@ -88,6 +88,13 @@
                               </li>
 
                               <li class="active">
+                                <a class=" " href="/dsivisi">
+                                   <img src="/assets/img/icons8-organization-chart-people-24.png">
+                                    <span>&nbsp&nbspDivisi</span>
+                                </a>
+                              </li>
+
+                              <li class="active">
                                 <a class=" " href="/persetujuan_izin">
                                    <i class="icon far fa-calendar-check"></i>
                                     <span>Persetujuan Izin</span>

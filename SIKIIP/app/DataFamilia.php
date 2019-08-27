@@ -14,7 +14,7 @@ class DataFamilia extends Model
         'nik','nama_familia', 'jenis_hubungan', 'tempat_lahir_familia', 'tanggal_lahir_familia', 'jenis_kelamin_familia',
     ];
 
-    public function datakaryawanfamilia()
+    public function datakaryawan()
     {
         return $this->belongsTo('App\DataFamilia');
     }

@@ -88,6 +88,13 @@
                               </li>
 
                               <li class="active">
+                                <a class=" " href="/dsivisi">
+                                   <img src="/assets/img/icons8-organization-chart-people-24.png">
+                                    <span>&nbsp&nbspDivisi</span>
+                                </a>
+                              </li>>
+
+                              <li class="active">
                                 <a class=" " href="/persetujuan_izin">
                                    <i class="icon far fa-calendar-check"></i>
                                     <span>Persetujuan Izin</span>
@@ -207,7 +214,7 @@
                                   <button type="button" data-dismiss="modal" aria-hidden="true" class="close"><span class="mdi mdi-close"></span></button>
                                   <h3 class="modal-title">Edit Data Pendidikan</h3>
                                 </div>
-                                <form id="form_submit_edit" name="submit1" action="/datakaryawan/{{$data->id_riwayat_pendidikan}}/update/data_pendidikan" method="POST">
+                                <form id="form_submit_edit" name="submit1" action="/datakaryawan/{{$data->id_riwayat_pendidikan}}/update/data_pendidikan" method="POST" enctype="multipart/form-data">
                                  @csrf
                                 <div class="modal-body">
                                    <div class="form-group">
@@ -228,7 +235,7 @@
                                   </div>
                                    <div class="form-group">
                                     <label>Periode</label>
-                                    <input name="periode_pendidikan" value="{{$data->periode_pendidikan}}" type="text" class="form-control" >
+                                    <input name="periode_pendidikan" value="{{$data->periode_pendidikan}}" type="number" class="form-control" >
                                   </div>
                                   <label>Foto Ijazah/Sertifikat</label>
                                    <div align="center" class="form-group">

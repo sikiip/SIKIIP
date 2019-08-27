@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="/image/favicon.png">
-    <title>Data Karyawan</title>
+    <title>Edit Profil</title>
     <link rel="stylesheet" type="text/css" href="/assets/lib/perfect-scrollbar/css/perfect-scrollbar.min.css"/>
     <link rel="stylesheet" type="text/css" href="/assets/lib/material-design-icons/css/material-design-iconic-font.min.css"/>
     <link rel="stylesheet" type="text/css" href="/assets/lib/datatables/css/dataTables.bootstrap.min.css"/>
@@ -18,8 +18,6 @@
     <link rel="stylesheet" type="text/css" href="/assets/lib/datetimepicker/css/bootstrap-datetimepicker.min.css"/>
     <link rel="stylesheet" type="text/css" href="/assets/css/float_button.css">
     <link rel="stylesheet" type="text/css" href="/css/croppie.css">
-    <!-- Toastr untuk notifikasi -->
-    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
   </head>
   <body>
     <div class="be-wrapper">
@@ -47,7 +45,7 @@
                         <div class="circular--portrait">
                             <img class="img-responsive foto-karyawan" src="/image/FotoProfil/{{Auth::user()->foto_profil}}">
                             <div id="username">
-                                <a href="/profil" class="simple_text"><h1 class="username">{{ Auth::user()->nama_karyawan }}</h1></a>
+                                <a href="profil.html" class="simple_text">{{ Auth::user()->name }}</a>
                             </div>
                            <button onclick="window.location.href='/profil'" type="button" class="btn">Profil</button>
                            <!-- <button class="btn btn-space btn-default active">Default</button> -->
@@ -84,13 +82,6 @@
                                 <a class=" " href="/penggajian">
                                    <i class="icon fas fa-money-check-alt"></i>
                                     <span>Penggajian</span>
-                                </a>
-                              </li>
-
-                              <li class="active">
-                                <a class=" " href="/dsivisi">
-                                   <img src="/assets/img/icons8-organization-chart-people-24.png">
-                                    <span>&nbsp&nbspDivisi</span>
                                 </a>
                               </li>
 
@@ -150,12 +141,12 @@
       <!-- Konten -->
       <div class="be-content">
         <div class="page-head">
-          <h2 class="page-head-title">Rincian Data Karyawan</h2>
+          <h2 class="page-head-title">Edit Profil</h2>
            <ol class="breadcrumb page-head-nav">
-            <li><a href="/datakaryawan">Data Karyawan</a></li>
-            <li class="active">Edit Data Karyawan</li>
+            <li class="active"></li>
           </ol>
         </div>
+              
 
         <div class="main-content container-fluid">
           <div class="row">
@@ -167,86 +158,74 @@
                             <ul class="progressbar">
                               <a class="a" href="/datakaryawan/{{$data_karyawan->nik}}/edit/data_pribadi"><li class="done">Data Pribadi</li></a>
                               <a class="a" href="/datakaryawan/{{$data_karyawan->nik}}/edit/data_keluarga"><li class="done">Data Keluarga</li></a>
-                              <a class="a" href="/datakaryawan/{{$data_karyawan->nik}}/edit/data_pendidikan"><li class="done">Riwayat Pendidikan</li></a>
-                              <a class="a" href="/datakaryawan/{{$data_karyawan->nik}}/edit/data_riwayat_pekerjaan"><li class="active">Riwayat Pekerjaan</li></a><br>
+                              <a class="a" href="/datakaryawan/{{$data_karyawan->nik}}/edit/data_pendidikan"><li class="active">Riwayat Pendidikan</li></a>
+                              <a class="a" href="/datakaryawan/{{$data_karyawan->nik}}/edit/data_riwayat_pekerjaan"><li class="">Riwayat Pekerjaan</li></a><br>
                             </ul><br>
                           </div><br>
 
-                <div class="panel-heading">Data Riwayat Pekerjaan</div>
+                <div class="panel-heading">Data Pendidikan</div>
                 
                  <div class="modal-body">
                   <div class="table-responsive noSwipe">
                     <table class="table table-striped table-hover">
                      <thead>
                       <tr>
-                        <th style="width:30%">Nama Perusahaan</th>
-                        <th style="width:20%">Jenis Industri</th>
-                        <th style="width:20%">Jabatan Akhir</th>
-                        <th style="width:20%">Periode Kerja</th>
-                        <th style="width:20%">Gaji Akhir</th>
-                        <th style="width:20%">Alasan Berhenti</th>
+                        <th style="width:30%">Jenjang Pendidikan</th>
+                        <th style="width:20%">Nama Institusi</th>
+                        <th style="width:20%">Kota</th>
+                        <th style="width:20%">Jurusan</th>
+                        <th style="width:20%">Periode</th>
                         <th align="center" style="width:30%">Action</th>
                       </tr>
                     </thead>
-                       @foreach($riwayat_pekerjaan as $data)
+                       @foreach($riwayat_pendidikan as $data)
                         <tbody>
                         <tr>
-                          <td>{{$data->nama_perusahaan}}</td>
-                          <td>{{$data->jenis_industri}}</td>
-                          <td>{{$data->jabatan_akhir}}</td>
-                          <td>{{$data->periode_berakhir_kerja}}</td>
-                          <td>Rp.{{$data->gaji_akhir}}</td>
-                          <td>{{$data->alasan_berhenti}}</td>
+                          <td>{{$data->jenjang_pendidikan}}</td>
+                          <td>{{$data->nama_sekolah}}</td>
+                          <td>{{$data->kota_sekolah}}</td>
+                          <td>{{$data->jurusan_pendidikan}}</td>
+                          <td>{{$data->periode_pendidikan}}</td>
                           <td>
-                             <button data-toggle="modal" data-target="#edit-data-familia-{{$data->id_riwayat_pekerjaan}}" type="button" class="btn btn-space btn-warning"> Edit </button>
-                             <button data-toggle="modal" data-target="#hapus-{{$data->id_riwayat_pekerjaan}}" type="button" class="btn btn-space btn-danger"> Hapus </button>
+                             <button data-toggle="modal" data-target="#edit-data-familia-{{$data->id_riwayat_pendidikan}}" type="button" class="btn btn-space btn-warning"> Edit </button>
+                             <button data-toggle="modal" data-target="#hapus-{{$data->id_riwayat_pendidikan}}" type="button" class="btn btn-space btn-danger"> Hapus </button>
                           </td>
 
+
+
                            <!-- Modals untuk Edit Data Familia -->
-                           <form id="form_submit_edit" name="submit1" action="/datakaryawan/{{$data->id_riwayat_pekerjaan}}/update/data_riwayat_pekerjaan" method="POST" enctype="multipart/form-data">
+                           <form id="form_submit_edit" name="submit1" action="/datakaryawan/{{$data->id_riwayat_pendidikan}}/update/data_pendidikan" method="POST">
                                  @csrf
-                            <div id="edit-data-familia-{{$data->id_riwayat_pekerjaan}}" tabindex="-1" role="dialog" class="modal fade colored-header colored-header-primary">
+                            <div id="edit-data-familia-{{$data->id_riwayat_pendidikan}}" tabindex="-1" role="dialog" class="modal fade colored-header colored-header-primary">
                             <div class="modal-dialog">
 
                               <div class="modal-content">
                                 
                                 <div class="modal-header">
                                   <button type="button" data-dismiss="modal" aria-hidden="true" class="close"><span class="mdi mdi-close"></span></button>
-                                  <h3 class="modal-title">Edit Data Pekerjaan</h3>
+                                  <h3 class="modal-title">Edit Data Pendidikan</h3>
                                 </div>
                                 <div class="modal-body">
                                    <div class="form-group">
-                                    <label>Nama Perusahaan</label>
-                                    <input name="nama_perusahaan" value="{{$data->nama_perusahaan}}" type="text" class="form-control">
-                                   </div>
-                                   <div class="form-group">
-                                    <label>Jenis Industri</label>
-                                    <input name="jenis_industri" value="{{$data->jenis_industri}}" type="text" class="form-control">
+                                    <label>Jenjang Pendidikan</label>
+                                    <input name="jenjang_pendidikan" value="{{$data->jenjang_pendidikan}}" type="text" class="form-control">
                                    </div>
                                   <div class="form-group">
-                                    <label>Jabatan Akhir</label>
-                                    <input name="jabatan_akhir" value="{{$data->jabatan_akhir}}" type="text" class="form-control" >         
+                                    <label>Nama Institusi</label>
+                                    <input name="nama_sekolah" value="{{$data->nama_sekolah}}" type="text" class="form-control">
                                   </div>
                                    <div class="form-group">
-                                    <label>Periode Kerja</label>
-                                    <input name="periode_berakhir_kerja" value="{{$data->periode_berakhir_kerja}}" type="text" class="form-control" >
-                                  </div>
-                                  <div class="form-group">
-                                    <label>Gaji Akhir</label>
-                                    <input name="gaji_akhir" value="{{$data->gaji_akhir}}" type="number" class="form-control" >
-                                  </div>
-                                  <div class="form-group">
-                                    <label>Alasan Berhenti</label>
-                                    <input name="alasan_berhenti" value="{{$data->alasan_berhenti}}" type="text" class="form-control" >
-                                  </div>
-                                  <label>Foto Verklarin</label>
-                                   <div align="center" class="form-group">
-                                    <img id="foto_verklarin" src="/image/Verklarin/{{$data->foto_verklarin}}" alt="Placeholder" class="img-data"><br>
-                                    <div align="center" class="upload-btn-wrapper">
-                                      <button class="btn btn-default">Upload Verklarin</button>
-                                      <input id="input_foto_verklarin" type="file" name="foto_verklarin"/>
-                                    </div>
+                                    <label>Kota Institusi</label>
+                                    <input name="kota_sekolah" value="{{$data->kota_sekolah}}" type="text" class="form-control">
                                    </div>
+                                  <div class="form-group">
+                                    <label>Jurusan </label>
+                                    <input name="jurusan_pendidikan" value="{{$data->jurusan_pendidikan}}" type="text" class="form-control" >         
+                                  </div>
+                                   <div class="form-group">
+                                    <label>Periode</label>
+                                    <input name="periode_pendidikan" value="{{$data->periode_pendidikan}}" type="text" class="form-control" >
+                                  </div>
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" data-dismiss="modal" class="btn btn-default">Batal</button>
@@ -260,75 +239,75 @@
                           
                           <!--Akhir dari Modals Edit data familia -->
 
-                          <!-- Modals untuk Hapus -->
+                  <!-- Modals untuk Hapus -->
 
-                            <div id="hapus-{{$data->id_riwayat_pekerjaan}}" tabindex="-1" role="dialog" class="modal fade">
-                              <div class="modal-dialog">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <button type="button" data-dismiss="modal" aria-hidden="true" class="close"><span class="mdi mdi-close"></span></button>
-                                  </div>
-                                  <div class="modal-body">
-                                    <div class="text-center">
-                                      <div class="text-danger"><span class="modal-main-icon mdi mdi-close-circle-o"></span></div>
-                                      <h3>Apakah Anda yakin untuk menghapus data</h3>
-                                      <p><font size="4"> {{$data->nama_perusahaan}}, {{$data->jenis_industri}}, {{$data->jabatan_akhir}} ?</font> <br><br>
-                                      (* Data yang telah dihapus tidak dapat dikembalikan)</p>
-                                      <div class="xs-mt-50">
-                                        <button type="button" data-dismiss="modal" class="btn btn-space btn-default">Batal</button>
-                                        <a href="/datakaryawan/{{$data->id_riwayat_pekerjaan}}/delete/data_riwayat_pekerjaan"><button type="button" class="btn btn-space btn-danger">Hapus</button></a>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="modal-footer"></div>
-                                </div>
+                    <div id="hapus-{{$data->id_riwayat_pendidikan}}" tabindex="-1" role="dialog" class="modal fade">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" data-dismiss="modal" aria-hidden="true" class="close"><span class="mdi mdi-close"></span></button>
+                          </div>
+                          <div class="modal-body">
+                            <div class="text-center">
+                              <div class="text-danger"><span class="modal-main-icon mdi mdi-close-circle-o"></span></div>
+                              <h3>Apakah Anda yakin untuk menghapus data</h3>
+                              <p><font size="4">{{$data->jenjang_pendidikan}}, {{$data->nama_sekolah}}, {{$data->jurusan_pendidikan}}, {{$data->periode_pendidikan}}?</font> <br><br>
+                              (* Data yang telah dihapus tidak dapat dikembalikan)</p>
+                              <div class="xs-mt-50">
+                                <button type="button" data-dismiss="modal" class="btn btn-space btn-default">Batal</button>
+                                <a href="/datakaryawan/{{$data->id_riwayat_pendidikan}}/delete/data_pendidikan"><button type="button" class="btn btn-space btn-danger">Hapus</button></a>
                               </div>
                             </div>
-                            <!--Akhir dari Modals Hapus -->
+                          </div>
+                          <div class="modal-footer"></div>
+                        </div>
+                      </div>
+                    </div>
+               <!--Akhir dari Modals Hapus -->
 
                         </tr>
                         </tbody>
                        @endforeach
                     </table>
-                    <div align="center" class="form-group">
-                      <tr><br>
-                      @foreach($foto_verklarin as $riwayat)
+                        <div align="center" class="form-group">
+                          <tr><br>
+                          @foreach($foto_ijazah_sertifikat as $riwayat)
 
-                      <td align="center" class="form-group">
-                          <img data-toggle="modal" data-target="#modal-transparent-pekerjaan{{$riwayat->id_riwayat_pekerjaan}}" src="/image/Verklarin/{{$riwayat->foto_verklarin}}" alt="Placeholder" class="img-data">
-                      </td>
+                            @if(is_null($riwayat->foto_ijazah_sertifikat))
+                                <!-- Do Nothing  -->
+                            @else
+                            <td align="center" class="form-group">
+                                <img data-toggle="modal" data-target="#modal-transparent-pendidikan{{$riwayat->id_riwayat_pendidikan}}" src="/image/IjazahSertifikat/{{$riwayat->foto_ijazah_sertifikat}}" alt="Placeholder" class="img-data">
+                            </td>
 
-                        <!-- Modal Foto Ijazah dan Sertifikat-->
-                          <div  class="modal modal-transparent fade" id="modal-transparent-pekerjaan{{$riwayat->id_riwayat_pekerjaan}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-header">
-                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              <!-- Modal Foto Ijazah dan Sertifikat-->
+                                <div  class="modal modal-transparent fade" id="modal-transparent-pendidikan{{$riwayat->id_riwayat_pendidikan}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                      <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                      </div>
+                                      <div class="modal-body">
+                                        <center>  
+                                          <img src="/image/IjazahSertifikat/{{$riwayat->foto_ijazah_sertifikat}}" alt="" class="img-responsive">
+                                        </center>
+                                      </div>
                                 </div>
-                                <div class="modal-body">
-                                  <center>  
-                                    <img src="/image/Verklarin/{{$riwayat->foto_verklarin}}" alt="" class="img-responsive">
-                                  </center>
-                                </div>
-                                
-                          </div>
+                            @endif
+                          @endforeach
+                          </tr>
+                        </div>
 
-                      @endforeach
-                      </tr>
-                    </div>
                   </div>
           <!-- End Modal Body -->
 
-
-
-
           
               <div class="modal-footer">
-                  <a href="/datakaryawan/{{$data_karyawan->nik}}/edit/data_riwayat_pekerjaan"><button type="button" data-dismiss="modal" class="btn btn-default">Kembali</button></a>
+                  <a href="/profil/{nik}/edit/data_keluarga"><button type="button" data-dismiss="modal" class="btn btn-default">Kembali</button></a>
                   <button data-toggle="modal" data-target="#tambah-data-familia" type="button" data-dismiss="modal" class="btn btn-primary">Tambah</button>
-                  <a href="/datakaryawan"><button type="button" data-dismiss="modal" class="btn btn-default">Selesai</button></a>
+                  <a href="/profil/{nik}/edit/data_riwayat_pekerjaan"><button type="button" data-dismiss="modal" class="btn btn-default">Lanjut</button></a>
               </div>
 
-                   <!-- Modals untuk Edit Tambah Data Familia -->
-                        <form id="form_submit2" name="form_submit2" action="/datakaryawan/tambah/update/data_riwayat_pekerjaan" method="POST" enctype="multipart/form-data">
+                   <!-- Modals untuk Edit Tambah Data Pendidikan -->
+                        <form id="form_submit2" name="form_submit2" action="/datakaryawan/tambah/update/data_pendidikan" method="POST" enctype="multipart/form-data">
                                  @csrf
                             <div id="tambah-data-familia" tabindex="-1" role="dialog" class="modal fade colored-header colored-header-primary">
                             <div class="modal-dialog">
@@ -336,55 +315,54 @@
                                 
                                 <div class="modal-header">
                                   <button type="button" data-dismiss="modal" aria-hidden="true" class="close"><span class="mdi mdi-close"></span></button>
-                                  <h3 class="modal-title">Edit </h3>
+                                  <h3 class="modal-title">Tambah Data Pendidikan</h3>
                                 </div>
                                 <div class="modal-body">
                                    <div class="form-group">
-                                    <label>Nama Perusahaan</label>
-                                    <input name="nama_perusahaan" type="text" class="form-control" required="">
-                                   </div>
-                                   <div class="form-group">
-                                    <label>Jenis Industri</label>
-                                    <input name="jenis_industri" type="text" class="form-control" required="">
-                                   </div>
+                                    <label>Jenjang Pendidikan</label>
+                                    <input name="jenjang_pendidikan" type="text" class="form-control" required="">
+                                  </div>
                                   <div class="form-group">
-                                    <label>Jabatan Akhir</label>
-                                    <input name="jabatan_akhir" type="text" class="form-control" required="">         
+                                    <label>Nama Institusi</label>
+                                    <input name="nama_sekolah" type="text" class="form-control" required="">
                                   </div>
                                    <div class="form-group">
-                                    <label>Periode Kerja</label>
-                                    <input name="periode_berakhir_kerja" type="text" class="form-control" required="" >
+                                    <label>Kota Instusi</label>
+                                    <input name="kota_sekolah" type="text" class="form-control" required="">
                                   </div>
                                   <div class="form-group">
-                                    <label>Gaji Akhir</label>
-                                    <input name="gaji_akhir" type="number" class="form-control" required="">
+                                    <label>Jurusan</label>
+                                    <input name="jurusan_pendidikan" type="text" class="form-control" required="">              
+                                  </div>
+                                   <div class="form-group">
+                                    <label>Periode</label>
+                                    <input name="periode_pendidikan" type="text" class="form-control" required="">
                                   </div>
                                   <div class="form-group">
-                                    <label>Alasan Berhenti</label>
-                                    <input name="alasan_berhenti" type="text" class="form-control" required="" >
+                                    <input value="{{$data_karyawan->nik}}" name="nik" type="hidden" class="form-control" required="" >
                                   </div>
-                                  <div class="form-group">
-                                    <input value="{{$data_karyawan->nik}}" name="nik" type="hidden" class="form-control" required="">
-                                  </div>
-                                  <label>Foto Verklarin</label>
+                                  <label>Foto Ijazah/Sertifikat</label>
                                    <div align="center" class="form-group">
-                                    <img id="tambah_foto_verklarin" src="/image/Verklarin/140x140.png" alt="Placeholder" class="img-data"><br>
+                                    <img id="foto_IjazahSertifikat" src="/image/IjazahSertifikat/140x140.png" alt="Placeholder" class="img-data"><br>
                                     <div align="center" class="upload-btn-wrapper">
-                                      <button class="btn btn-default">Upload Verklarin</button>
-                                      <input id="tambah_input_foto_verklarin" type="file" name="foto_verklarin" required=""/>
+                                      <button class="btn">Upload Ijazah/Sertifikat</button>
+                                      <input id="input_foto_IjazahSertifikat" type="file" name="foto_ijazah_sertifikat" required=""/>
                                     </div>
                                    </div>
-
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" data-dismiss="modal" class="btn btn-default">Batal</button>
-                                  <button id="submit2" name="submit2" type="submit2" class="btn btn-primary" onclick="submitFormsTambah()">Tambah</button>
+                                  <button id="submit2" type="submit2" class="btn btn-primary" onclick="submitFormsTambah()">Tambah</button>
                                 </div>
                               </div>
                             </div>
                           </div> 
                         </form>
-              <!--Akhir dari Modals Tambah data familia -->
+              <!--Akhir dari Modals Edit data familia -->
+
+
+
+
 
             </div>
 
@@ -402,44 +380,6 @@
       </div>
       </div>
     
-    <!-- Script Toastr untuk notifikasi-->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-
-    <script>
-       @if (Session::has('message'))
-          var type = "{{Session::get('alert-type','info')}}";
-          toastr.options = {
-            "debug": false,
-            "onclick": null,
-            "fadeIn": 300,
-            "fadeOut": 1000,
-            "timeOut": 5000,
-            "extendedTimeOut": 1000
-          }
-
-          switch(type)
-          {
-            case 'info':
-            toastr.info("{{Session::get('message')}}");
-            break;
-
-            case 'success':
-            toastr.success("{{Session::get('message')}}");
-            break;
-
-            case 'warning':
-            toastr.warning("{{Session::get('message')}}");
-            break;
-
-            case 'error':
-            toastr.error("{{Session::get('message')}}");
-            break;
-          }
-
-       @endif
-
-    </script>
 
     <!-- JS untuk opsi resign di bagian edit data karyawan -->
 
@@ -461,14 +401,14 @@
 
     <script type="text/javascript">
 
-      //fungsi preview foto verklarin
+      //fungsi preview foto Ijazah/Sertifikat
 
-      function readURL_verklarin(input) {
+      function readURL_IjazahSertifikat(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
 
                 reader.onload = function (e) {
-                    $('#foto_verklarin')
+                    $('#foto_IjazahSertifikat')
                         .attr('src', e.target.result);
                 };
 
@@ -476,30 +416,10 @@
             }
       }
 
-      $("#input_foto_verklarin").change(function () {
-              readURL_verklarin(this);
+      $("#input_foto_IjazahSertifikat").change(function () {
+              readURL_IjazahSertifikat(this);
       });
-      //end fungsi preview foto verklarin
-
-      //fungsi preview foto verklarin
-
-      function readURL_tambah_verklarin(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('#tambah_foto_verklarin')
-                        .attr('src', e.target.result);
-                };
-
-                reader.readAsDataURL(input.files[0]);
-            }
-      }
-
-      $("#tambah_input_foto_verklarin").change(function () {
-              readURL_tambah_verklarin(this);
-      });
-      //end fungsi preview foto verklarin
+      //end fungsi preview foto kk
 
     </script>
 

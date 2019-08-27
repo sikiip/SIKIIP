@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="/image/favicon.png">
-    <title>Data Karyawan</title>
+    <title>Profil</title>
     <link rel="stylesheet" type="text/css" href="/assets/lib/perfect-scrollbar/css/perfect-scrollbar.min.css"/>
     <link rel="stylesheet" type="text/css" href="/assets/lib/material-design-icons/css/material-design-iconic-font.min.css"/>
     <link rel="stylesheet" type="text/css" href="/assets/lib/datatables/css/dataTables.bootstrap.min.css"/>
@@ -18,8 +18,6 @@
     <link rel="stylesheet" type="text/css" href="/assets/lib/datetimepicker/css/bootstrap-datetimepicker.min.css"/>
     <link rel="stylesheet" type="text/css" href="/assets/css/float_button.css">
     <link rel="stylesheet" type="text/css" href="/css/croppie.css">
-    <!-- Toastr untuk notifikasi -->
-    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
   </head>
   <body>
     <div class="be-wrapper">
@@ -47,7 +45,7 @@
                         <div class="circular--portrait">
                             <img class="img-responsive foto-karyawan" src="/image/FotoProfil/{{Auth::user()->foto_profil}}">
                             <div id="username">
-                                <a href="/profil" class="simple_text"><h1 class="username">{{ Auth::user()->nama_karyawan }}</h1></a>
+                                <a href="profil.html" class="simple_text">{{ Auth::user()->name }}</a>
                             </div>
                            <button onclick="window.location.href='/profil'" type="button" class="btn">Profil</button>
                            <!-- <button class="btn btn-space btn-default active">Default</button> -->
@@ -84,13 +82,6 @@
                                 <a class=" " href="/penggajian">
                                    <i class="icon fas fa-money-check-alt"></i>
                                     <span>Penggajian</span>
-                                </a>
-                              </li>
-
-                              <li class="active">
-                                <a class=" " href="/dsivisi">
-                                   <img src="/assets/img/icons8-organization-chart-people-24.png">
-                                    <span>&nbsp&nbspDivisi</span>
                                 </a>
                               </li>
 
@@ -150,10 +141,9 @@
       <!-- Konten -->
       <div class="be-content">
         <div class="page-head">
-          <h2 class="page-head-title">Rincian Data Karyawan</h2>
+          <h2 class="page-head-title">Edit Profil</h2>
            <ol class="breadcrumb page-head-nav">
-            <li><a href="/datakaryawan">Data Karyawan</a></li>
-            <li class="active">Edit Data Karyawan</li>
+            <li class="active"></li>
           </ol>
         </div>
               
@@ -172,7 +162,8 @@
                               <a class="a" href="/datakaryawan/{{$data_karyawan->nik}}/edit/data_pendidikan"><li class="">Riwayat Pendidikan</li></a>
                               <a class="a" href="/datakaryawan/{{$data_karyawan->nik}}/edit/data_riwayat_pekerjaan"><li class="">Riwayat Pekerjaan</li></a><br>
                             </ul><br>
-                          </div><br>             
+                          </div><br>
+
                   
                       <div class="panel-heading">Data Pribadi
                       </div>
@@ -184,7 +175,7 @@
                              <div align="center" class="form-group">
                               <img id="foto_karyawan" data-toggle="modal" data-target="#modal-transparent-foto-karyawan" src="/image/FotoKaryawan/{{$data_karyawan->foto_karyawan}}" alt="Placeholder" class="img-thumbnail"><br>
                               <div align="center" class="upload-btn-wrapper">
-                                <button class="btn btn-default">Upload Foto</button>
+                                <button class="btn">Upload Foto</button>
                                 <input id="input_foto_karyawan" type="file" name="foto_karyawan"/>
                               </div>
                              </div>
@@ -205,30 +196,8 @@
                             </div>
 
                             
-                            <div class="form-group">
-                              <label>NIK</label>
-                              <input name="nik" type="number" value="{{$data_karyawan->nik}}"  class="form-control">
-                            </div>
-                            <div class="form-group">
-                              <label>ID Sidik Jari</label>
-                              <input name="id_sidik_jari" type="number" value="{{$data_karyawan->id_sidik_jari}}" class="form-control">
-                            </div>
-                            <div class="form-group">
-                              <label>Nama</label>
-                              <input name="nama_karyawan" type="text" value="{{$data_karyawan->nama_karyawan}}" class="form-control">
-                            </div>
-                              <div class="form-group">
-                              <label>Jabatan/Divisi</label>
-                              <input name="divisi" type="text" value="{{$data_karyawan->divisi}}" class="form-control">
-                            </div>
-                            <div class="form-group">
-                              <label>Email address</label>
-                              <input name="email" type="email" value="{{$data_karyawan->email}}" class="form-control" required="">
-                            </div>
-                            <div class="form-group">
-                              <label>Tanggal Masuk Kerja</label>
-                              <input name="masa_kerja" type="date" value="{{$data_karyawan->masa_kerja}}" class="form-control" >              
-                            </div>
+                           
+                           
                             <div class="form-group">
                               <label>Alamat KTP</label>
                               <input name="alamat_ktp" type="text" value="{{$data_karyawan->alamat_ktp}}" class="form-control" >
@@ -244,9 +213,23 @@
                             <div class="row">
                               <div class="form-group col-md-12">
                                 <label>Tanggal Lahir</label>
-                                 <input name="tanggal_lahir" type="date" value="{{$data_karyawan->tanggal_lahir}}" class="form-control">
+                                 <input name="tanggal_lahir" id="" type="date" value="{{$data_karyawan->tanggal_lahir}}" class="form-control">
                               </div>
                             </div>
+                  <!--           <div class="row no-margin-y">
+                              <div class="form-group col-xs-3">
+                                <label>Tanggal</label>
+                                <input type="text" value="{{DateTime::createFromFormat('Y-m-d',$data_karyawan->tanggal_lahir)->format('d')}}" class="form-control" >
+                              </div>
+                              <div class="form-group col-xs-3">
+                                <label>Bulan</label>
+                                <input type="text" value="{{DateTime::createFromFormat('Y-m-d',$data_karyawan->tanggal_lahir)->format('m')}}" class="form-control" >
+                              </div>
+                              <div class="form-group col-xs-3">
+                                <label>Tahun</label>
+                                <input type="text" value="{{DateTime::createFromFormat('Y-m-d',$data_karyawan->tanggal_lahir)->format('Y')}}" class="form-control" >
+                              </div>
+                            </div> -->
                              <div class="form-group">
                               <label>No.Telepon</label>
                               <input name="no_telp" type="number" value="{{$data_karyawan->no_telp}}" class="form-control" >
@@ -274,14 +257,14 @@
                             <tr>
                               <td>
                               <div class="upload-btn-wrapper">
-                                <button class="btn btn-default">Upload Kartu Keluarga</button>
+                                <button class="btn">Upload Kartu Keluarga</button>
                                 <input id="input_foto_kk" type="file" name="foto_kk" />
                               </div>
                               </td>
                               <td>&nbsp;&nbsp;</td>
                               <td>
                               <div align="center" class="upload-btn-wrapper">
-                                <button class="btn btn-default">Upload KTP</button>
+                                <button class="btn">Upload KTP</button>
                                 <input id="input_foto_ktp" type="file" name="foto_ktp" />
                               </div>
                               </td>
@@ -313,13 +296,13 @@
                               </div>
                              <div class="form-group">
                               <label>No.BPJS</label>
-                              <input name="no_bpjs" type="number" value="{{$data_karyawan->no_bpjs}}" class="form-control">
+                              <input name="no_bpjs" type="number" value="{{$data_karyawan->no_ktp}}" class="form-control">
                              </div>
                              <label>Foto BPJS</label>
                              <div align="center" class="form-group">
                               <img id="foto_bpjs" data-toggle="modal" data-target="#modal-transparent-bpjs" src="/image/BPJS/{{$data_karyawan->foto_bpjs}}" alt="Placeholder" class="img-data"><br>
                               <div align="center" class="upload-btn-wrapper">
-                                <button class="btn btn-default">Upload BPJS</button>
+                                <button class="btn">Upload BPJS</button>
                                 <input id="input_foto_bpjs" type="file" name="foto_bpjs" />
                               </div>
                              </div>
@@ -342,7 +325,7 @@
                             <div align="center" class="form-group">
                              <img id="foto_npwp" data-toggle="modal" data-target="#modal-transparent-npwp" src="/image/NPWP/{{$data_karyawan->foto_npwp}}" alt="Placeholder" class="img-data"><br>
                              <div align="center" class="upload-btn-wrapper">
-                                <button class="btn btn-default">Upload NPWP</button>
+                                <button class="btn">Upload NPWP</button>
                                 <input id="input_foto_npwp" type="file" name="foto_npwp" />
                               </div>
                             </div>
@@ -365,7 +348,7 @@
                               <label>Hubungan dengan No.Telepon Darurat</label>
                               <input name="hub_no_telp_darurat" type="text" value="{{$data_karyawan->hub_no_telp_darurat}}" class="form-control">              
                             </div>
-                             <div class="form-group">
+                            <!--  <div class="form-group">
                               <label>Status</label>
                                 <select name="status_kerja" id="status_kerja" class="form-control">
                                     <option value="{{$data_karyawan->status_kerja}}">{{$data_karyawan->status_kerja}}</option>
@@ -378,8 +361,8 @@
                                     <option value="Resign" >Resign</option>
                                     @endif
                                 </select> 
-                             </div>
-                          @if($data_karyawan->status_kerja == "Aktif")
+                             </div> -->
+                         <!--  @if($data_karyawan->status_kerja == "Aktif")
                             <div class="form-group">
                               <label>Alasan</label>
                               <input name="alasan_resign" value="{{$data_karyawan->alasan_resign}}" id="alasan_resign" type="text" disabled="" class="form-control" required="">  
@@ -387,8 +370,8 @@
                             <div class="form-group">
                               <label>Tanggal Resign</label>
                               <input name="tanggal_resign" value="{{$data_karyawan->tanggal_resign}}" id="tanggal_resign" type="date" class="form-control" disabled="" required="">
-                            </div>
-                          @elseif($data_karyawan->status_kerja == "Resign")
+                            </div> -->
+                         <!--  @elseif($data_karyawan->status_kerja == "Resign")
                             <div class="form-group">
                               <label>Alasan</label>
                               <input name="alasan_resign" value="{{$data_karyawan->alasan_resign}}" id="alasan_resign" type="text" class="form-control" required="">  
@@ -396,7 +379,7 @@
                             <div class="form-group">
                               <label>Tanggal Resign</label>
                               <input name="tanggal_resign" value="{{$data_karyawan->tanggal_resign}}" id="tanggal_resign" type="date" class="form-control" required="">
-                            </div>
+                            </div> -->
                           @endif
                         </div>
                      
@@ -404,9 +387,9 @@
                      </div>
                      <!--panel Body--> 
                 <div class="modal-footer">
-                  <a href="/datakaryawan"><button type="button" data-dismiss="modal" class="btn btn-default">Kembali</button></a>
+                  <a href="/profil"><button type="button" data-dismiss="modal" class="btn btn-default">Kembali</button></a>
                   <button type="submit" data-dismiss="modal" class="btn btn-primary">Simpan</button>
-                  <a href="/datakaryawan/{{$data_karyawan->nik}}/edit/data_keluarga"><button type="button" data-dismiss="modal" class="btn btn-default">Lanjut</button></a>
+                  <a href="/profil/{nik}/edit/data_keluarga"><button type="button" data-dismiss="modal" class="btn btn-default">Lanjut</button></a>
                 </div>
             </div>
           </div>
@@ -421,45 +404,7 @@
         <p>Sistem Informasi Karyawan<b> Idea Imaji Persada</b></p>
       </div>
       </div>
-
-    <!-- Script Toastr untuk notifikasi-->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-
-    <script>
-       @if (Session::has('message'))
-          var type = "{{Session::get('alert-type','info')}}";
-          toastr.options = {
-            "debug": false,
-            "onclick": null,
-            "fadeIn": 300,
-            "fadeOut": 1000,
-            "timeOut": 5000,
-            "extendedTimeOut": 1000
-          }
-
-          switch(type)
-          {
-            case 'info':
-            toastr.info("{{Session::get('message')}}");
-            break;
-
-            case 'success':
-            toastr.success("{{Session::get('message')}}");
-            break;
-
-            case 'warning':
-            toastr.warning("{{Session::get('message')}}");
-            break;
-
-            case 'error':
-            toastr.error("{{Session::get('message')}}");
-            break;
-          }
-
-       @endif
-
-    </script>
+  
 
     <!-- JS untuk opsi resign di bagian edit data karyawan -->
 
@@ -475,6 +420,9 @@
     <script src="/assets/lib/datatables/plugins/buttons/js/buttons.print.js" type="text/javascript"></script>
     <script src="/assets/lib/datatables/plugins/buttons/js/buttons.colVis.js" type="text/javascript"></script>
     <script src="/assets/lib/datatables/plugins/buttons/js/buttons.bootstrap.js" type="text/javascript"></script>
+    <script src="/js/croppie.js"></script>
+
+
 
     <script type="text/javascript">
 
@@ -591,7 +539,59 @@
         });
         //end fungsi preview foto npwp                       
 
-                               
+                                // Start upload preview image
+                                  $(".gambar").attr("src", "/image/FotoKaryawan/{{$data_karyawan->foto_karyawan}}");
+                                  var $uploadCrop,
+                                  tempFilename,
+                                  rawImg,
+                                  imageId;
+                                  function readFile(input) {
+                                    if (input.files && input.files[0]) {
+                                            var reader = new FileReader();
+                                            reader.onload = function (e) {
+                                        $('.upload-demo').addClass('ready');
+                                        $('#cropImagePop').modal('show');
+                                              rawImg = e.target.result;
+                                            }
+                                            reader.readAsDataURL(input.files[0]);
+                                        }
+                                        else {
+                                          swal("Sorry - you're browser doesn't support the FileReader API");
+                                      }
+                                  }
+
+                                  $uploadCrop = $('#upload-demo').croppie({
+                                    enableExif: true,
+                                    enableOrientation: true, 
+                                    viewport: {
+                                      width: 250,
+                                      height: 400,
+                                    },
+                                  });
+                                  $('#cropImagePop').on('shown.bs.modal', function(){
+                                    // alert('Shown pop');
+                                    $uploadCrop.croppie('bind', {
+                                          url: rawImg
+                                        }).then(function(){
+                                          console.log('jQuery bind complete');
+                                        });
+                                  });
+
+                                  $('.item-img').on('change', function () { imageId = $(this).data('id'); tempFilename = $(this).val();
+                                                                           $('#cancelCropBtn').data('id', imageId); readFile(this); });
+                                  $('#cropImageBtn').on('click', function (ev) {
+                                    $uploadCrop.croppie('result', {
+                                      type: 'base64',
+                                      format: 'jpeg',
+                                      size: {width: 250, height: 400}
+                                    }).then(function (resp) {
+                                      $('#item-img-output').attr('src', resp);
+                                      $('#cropImagePop').modal('hide');
+                                    });
+                                  });
+                              // End upload preview image
+
+
     </script>
 
     <script type="text/javascript">

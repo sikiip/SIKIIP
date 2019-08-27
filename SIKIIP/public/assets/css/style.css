@@ -1,3 +1,23 @@
+select{
+    float: left;
+}
+.ajukan {
+    float: right;
+    margin-top: 25px;
+    margin-right: 26%;
+}
+.bulan{
+    width: 100%;
+    height: 20px;
+    margin-top: 10px;
+}
+
+.editprofil{
+    margin-top: 10px;
+    float:right;
+}
+
+
 .username{
   width: 120px;
   font-size:25px;
@@ -344,6 +364,7 @@ input[type=submit] {
 
 button.close,
 input.form-control,
+input.form-select-bulan,
 textarea.form-control {
     -webkit-appearance: none
 }
@@ -3323,7 +3344,7 @@ output {
 
 .form-control {
     width: 100%;
-    height: 48px;
+    height: 40px;
     background-color: #fff;
     background-image: none;
     border: 1px solid #d5d8de;

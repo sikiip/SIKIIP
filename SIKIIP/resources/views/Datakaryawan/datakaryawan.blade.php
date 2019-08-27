@@ -18,6 +18,8 @@
     <link rel="stylesheet" type="text/css" href="assets/lib/datetimepicker/css/bootstrap-datetimepicker.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- Toastr untuk notifikasi -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
   </head>
   <body>
     <div class="be-wrapper">
@@ -82,6 +84,13 @@
                                 <a class=" " href="/penggajian">
                                    <i class="icon fas fa-money-check-alt"></i>
                                     <span>Penggajian</span>
+                                </a>
+                              </li>
+
+                              <li class="active">
+                                <a class=" " href="/dsivisi">
+                                   <img src="/assets/img/icons8-organization-chart-people-24.png">
+                                    <span>&nbsp&nbspDivisi</span>
                                 </a>
                               </li>
 
@@ -153,6 +162,7 @@
                     <thead>
                       <tr>
                         <th style="width:10%;">NIK</th>
+                        <th style="width:10%;">ID Sidik Jari</th>
                         <th style="width:20%;">Nama</th>
                         <th style="width:15%;">Divisi</th>
                         <th style="width:15%;">Jurusan</th>
@@ -164,6 +174,7 @@
                       @foreach($data_karyawan as $data)
                       <tr class="odd gradeA">
                         <td>{{$data->nik}}</td>
+                        <td>{{$data->id_sidik_jari}}</td>
                         <td>{{$data->nama_karyawan}}</td>
                         <td>{{$data->divisi}}</td>
                         <td>
@@ -244,7 +255,12 @@
               <input id="nik" name="nik" type="text" class="form-control" required="">
               <span id="error_nik"></span>
             </div>
-             <div class="form-group">
+            <div class="form-group">
+              <label>ID Sidik Jari</label>
+              <input id="id_sidik_jari" name="id_sidik_jari" type="text" class="form-control" required="">
+              <span id="error_id_sidik_jari"></span>
+            </div>
+            <div class="form-group">
               <label>Nama</label>
               <input name="nama_karyawan" type="text" class="form-control" required="">
             </div>
@@ -290,7 +306,46 @@
         <p>Sistem Informasi Karyawan<b> Idea Imaji Persada</b></p>
       </div>
       </div>
-</div>
+    </div>
+
+        <!-- Script Toastr untuk notifikasi-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <script>
+       @if (Session::has('message'))
+          var type = "{{Session::get('alert-type','info')}}";
+          toastr.options = {
+            "debug": false,
+            "onclick": null,
+            "fadeIn": 300,
+            "fadeOut": 1000,
+            "timeOut": 5000,
+            "extendedTimeOut": 1000
+          }
+
+          switch(type)
+          {
+            case 'info':
+            toastr.info("{{Session::get('message')}}");
+            break;
+
+            case 'success':
+            toastr.success("{{Session::get('message')}}");
+            break;
+
+            case 'warning':
+            toastr.warning("{{Session::get('message')}}");
+            break;
+
+            case 'error':
+            toastr.error("{{Session::get('message')}}");
+            break;
+          }
+
+       @endif
+
+    </script>
 
     <!-- JS untuk opsi resign di bagian edit data karyawan -->
 
@@ -307,6 +362,7 @@
     <script src="assets/lib/datatables/plugins/buttons/js/buttons.colVis.js" type="text/javascript"></script>
     <script src="assets/lib/datatables/plugins/buttons/js/buttons.bootstrap.js" type="text/javascript"></script>
 
+<!-- Check availabilty nik -->
     <script type="text/javascript">
 
       $(document).ready(function(){
@@ -350,6 +406,44 @@
        
       });
     </script>
+
+    <!-- Check availabilty id_sidik-jari -->
+
+    <script>
+     $(document).ready(function(){
+
+       $('#id_sidik_jari').blur(function(){
+        var error_id_sidik_jari = '';
+        var id_sidik_jari = $('#id_sidik_jari').val();
+        var _token = $('input[name="_token"]').val();
+        var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+         $.ajax({
+          url:"{{ route('id_sidik_jari_available.check') }}",
+          method:"POST",
+          data:{id_sidik_jari:id_sidik_jari, _token:_token},
+          success:function(result)
+          {
+           if(result == 'unique')
+           {
+            $('#error_id_sidik_jari').html('<label class="text-success">ID Sidik Jari Available</label>');
+            $('#id_sidik_jari').removeClass('has-error');
+            $('#btntambah').removeClass('disabled', false);
+           }
+           else
+           {
+            $('#error_id_sidik_jari').html('<label class="text-danger">ID Sidik Jari not Available</label>');
+            $('#id_sidik_jari').addClass('has-error');
+            $('#btntambah').addClass('disabled', 'disabled');
+           }
+          }
+         })
+        
+       });
+       
+      });
+    </script>
+
+    <!-- Check availabilty email -->
 
     <script>
      $(document).ready(function(){

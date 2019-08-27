@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use DateTime;
 use Illuminate\Http\Request;
+
 
 class PresensiController extends Controller
 {
@@ -13,7 +16,10 @@ class PresensiController extends Controller
      */
     public function index()
     {
-        return view('Presensi.presensi');
+        $data_karyawan = NULL; /*\App\DataKaryawan::all();*/
+        $data_presensi  = NULL;/*\App\Presensi::all();*/
+
+       return view('Presensi.presensi',  ['data_karyawan' => $data_karyawan, 'data_presensi' => $data_presensi]);
     }
 
     /**
@@ -66,9 +72,18 @@ class PresensiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update_clock_in(Request $request, $id)
     {
-        //
+                    
+            $data_presensi = \App\Presensi::find($id);
+            $data_presensi->update($request->all());
+
+            $notification = array(
+                'message' => 'Data Berhasil di Ubah!',
+                'alert-type' => 'success' 
+            );
+
+            return back()->with($notification);
     }
 
     /**
@@ -81,4 +96,213 @@ class PresensiController extends Controller
     {
         //
     }
+
+    public function import_file(Request $request){
+
+            if ($request->hasFile('import_presensi')) {
+                $request->file('import_presensi')->move(public_path().'/filePresensi', $request->file('import_presensi')->getClientOriginalName());
+
+                $filename = $request->file('import_presensi')->getClientOriginalName();
+                $public_path = '/filePresensi/';
+
+                $fp = fopen($_SERVER['DOCUMENT_ROOT'].$public_path.$filename, 'r');
+                $i  = 0;
+
+                $last = DB::table('presensi')->latest('id_presensi')->first();
+                $last = $last['tanggal_presensi'];
+
+                $tanggal_presensi = $last;
+                $dari_tanggal    = $request->dari_tanggal;
+                $sampai_tanggal  = $request->sampai_tanggal;
+                if($dari_tanggal <= $tanggal_presensi){
+                    $notification = array(
+                        'message' => "Anda sudah memasukkan data tanggal ".$dari_tanggal." sampai tanggal ".$tanggal_presensi,
+                        'alert-type' => 'error'
+                    );
+
+                    return back()->with($notification);
+                    //return "Anda sudah memasukkan data tanggal ".$dari_tanggal." sampai tanggal ".$tanggal_presensi;
+                } else {
+                    //dd($last);
+                    while (!feof($fp)) {
+                        $data[] = fgetcsv($fp, 0, "\t");
+                        //$data_raw1 = preg_split('/-+/',$tanggal_presensi);
+                        $data_raw0 = preg_split('/ +/', $data[$i][1]);
+                        $tanggal_presensi = $data_raw0[0];
+                        if ($tanggal_presensi >= $dari_tanggal && $tanggal_presensi <= $sampai_tanggal) {
+                            $jam_presensi = $data_raw0[1];
+                            $id_sidik_jari = (int)$data[$i][0];
+                            $dif = (int)$data[$i][3];
+
+                            $data_absen[$id_sidik_jari . $tanggal_presensi] = $id_sidik_jari . ' ' . $tanggal_presensi;
+
+                            if ($dif == 0) {
+                                $data_jam_absen_datang[$id_sidik_jari . $tanggal_presensi] = $jam_presensi;
+                            } elseif ($dif == 1) {
+                                $data_jam_absen_pulang[$id_sidik_jari . $tanggal_presensi] = $jam_presensi;
+                            }
+                        } else {
+                            //Do Nothing
+                        }
+
+                        $i++;
+                    }
+
+                    if(is_null($data_absen))
+                    {
+                        $notification = array(
+                            'message' => 'File Gagal di Upload!',
+                            'alert-type' => 'error'
+                        );
+
+                        return back()->with($notification);
+
+                    } else {
+                        foreach ($data_absen as $data_absen) {
+                            $data_raw1 = preg_split('/ +/', $data_absen);
+                            $id_sidik_jari = $data_raw1[0];
+                            $tanggal_presensi = $data_raw1[1];
+                            $keys = $id_sidik_jari . $tanggal_presensi;
+                            $default_clock_in = '08:30';
+                            $default_clock_out = '17:30';
+                            $default_transport = '09:00';
+
+                            //Input jam clock out
+                            if (array_key_exists($keys, $data_jam_absen_pulang)) {
+                                $jam_clock_out = $data_jam_absen_pulang[$keys];
+                            } else {
+                                $jam_clock_out = '00:00:00';
+                            }
+                            //Input jam clock in
+                            if (array_key_exists($keys, $data_jam_absen_datang)) {
+                                $jam_clock_in = $data_jam_absen_datang[$keys];
+                            } else {
+                                $jam_clock_in = '00:00:00';
+                            }
+
+                            //Input late
+                            if ($jam_clock_in == '00:00:00') {
+                                $late = "04.00";
+                            } else {
+                                if ($jam_clock_in > $default_clock_in) {
+                                    $total = strtotime($jam_clock_in) - strtotime($default_clock_in);
+                                    $hours = floor($total / 60 / 60);
+                                    $minutes = round(($total - ($hours * 60 * 60)) / 60);
+                                    $late = $hours . '.' . $minutes;
+                                } else {
+                                    $late = '00.00';
+                                }
+                            }
+
+                            //Input Early
+                            if ($jam_clock_out == '00:00:00') {
+                                $early = "04.00";
+                            } else {
+                                if ($jam_clock_out < $default_clock_out) {
+                                    $total = strtotime($default_clock_out) - strtotime($jam_clock_out);
+                                    $hours = floor($total / 60 / 60);
+                                    $minutes = round(($total - ($hours * 60 * 60)) / 60);
+                                    $early = $hours . '.' . $minutes;
+                                } else {
+                                    $early = '00.00';
+                                }
+                            }
+
+                            //Input Transport
+                            if (is_null($jam_clock_in)) {
+                                $transport = null;
+                            } else {
+                                if ($jam_clock_in < $default_transport) {
+                                    $transport = '1';
+                                } else {
+                                    $transport = null;
+                                }
+                            }
+
+                            \App\Presensi::create([
+                                'id_sidik_jari' => $id_sidik_jari,
+                                'tanggal_presensi' => $tanggal_presensi,
+                                'jam_clock_in' => $jam_clock_in,
+                                'jam_clock_out' => $jam_clock_out,
+                                'late_presensi' => $late,
+                                'early_presensi' => $early,
+                                'transport_presensi' => $transport,
+                            ]);
+
+                        }
+                    }
+
+
+                    //dd($data_presensi);
+                    $notification = array(
+                        'message' => 'File Berhasil di Upload!',
+                        'alert-type' => 'success'
+                    );
+
+                    return back()->with($notification);
+                }
+            } else {
+                $notification = array(
+                    'message' => 'File Gagal di Upload!',
+                    'alert-type' => 'error'
+                );
+
+               return back()->with($notification);
+            }
+
+    }
+
+    public function tampilkan_presensi(Request $request){
+
+         $request = $request->all();
+
+
+              $tanggal_awal = DateTime::createFromFormat('Y-m-d',$request['dari_tanggal'])->format('Y-m-d');
+              $tanggal_awal = new DateTime($tanggal_awal);
+              $tanggal_akhir = DateTime::createFromFormat('Y-m-d',$request['sampai_tanggal'])->format('Y-m-d');
+              $tanggal_akhir = new DateTime($tanggal_akhir);
+
+              $perbedaan = $tanggal_awal->diff($tanggal_akhir);
+              $bulan = $perbedaan->m;
+              $hari  = $perbedaan->d;
+
+              if($bulan <= 0 && $hari <= 31){
+
+                    $data_karyawan = \App\Datakaryawan::all();
+                    $dari_tanggal_valid = \App\Presensi::where('tanggal_presensi',$request['dari_tanggal'])->count();
+
+                    //dd($dari_tanggal_valid);
+
+                     if($dari_tanggal_valid<=0){
+
+                        $notification = array(
+                             'message' => 'Tanggal tidak tersedia!',
+                             'alert-type' => 'error'
+                         );
+
+                         return back()->with($notification);
+                     
+                       } else {
+
+                         $data_presensi  =  DB::table('presensi')->whereBetween('tanggal_presensi', [$request['dari_tanggal'], $request['sampai_tanggal']])->get();
+                         return view('Presensi.presensi',  ['data_karyawan' => $data_karyawan, 'data_presensi' => $data_presensi]);
+                       }
+
+                     
+
+              } else {
+
+                    $notification = array(
+                        'message' => 'Rentang tanggal melebihi kapasitas!',
+                        'alert-type' => 'error'
+                    );
+
+                    return back()->with($notification);
+
+              }
+
+
+    }
+
+
 }

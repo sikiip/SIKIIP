@@ -1,0 +1,216 @@
+.row .col-lg-12 .page-header .fa{
+  margin-right: 15px;
+  font-size: 36px;
+}
+.row .col-lg-12 .page-header span{
+  font-size: 36px;
+  font-style: bold; 
+  margin-right:
+}
+.order-table {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #666;
+  text-shadow: 2px 2px 0px #fff;
+  background: #eaebec;
+  border: #404040 1px solid;
+}
+ 
+.order-table th {
+  padding: 10px 10px;
+  border-left:1px solid #000;
+  border-bottom: 1px solid #000;
+  background: #ededed;
+}
+ 
+.order-table th:first-child{  
+  border-left:none;  
+}
+ 
+.order-table tr {
+  text-align: center;
+  padding-left: 10px;
+}
+ 
+.order-table td:first-child {
+  text-align: left;
+  padding-left: 10px;
+  border-left: 0;
+}
+ 
+.order-table td {
+  padding: 10px 10px;
+  border-top: 2px solid #ffffff;
+  border-bottom:2px solid #e0e0e0;
+  border-left: 2px solid #e0e0e0;
+  background: #fafafa;
+  background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
+  background: -moz-linear-gradient(top, #fbfbfb, #fafafa);
+}
+ 
+.order-table tr:last-child td {
+  border-bottom: 0;
+}
+ 
+.order-table tr:last-child td:first-child {
+  -moz-border-radius-bottomleft: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+ 
+.order-table tr:last-child td:last-child {
+  -moz-border-radius-bottomright: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+ 
+.order-table tr:hover td {
+  background: #f2f2f2;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
+  background: -moz-linear-gradient(top, #f2f2f2, #f0f0f0);
+}
+
+
+.custom-select {
+  position: relative;
+  font-family: Arial;
+
+}
+/*.custom-select select {
+  display: none; /*hide original SELECT element:*/
+/*}*/
+.select-selected {
+  background-color: DodgerBlue;
+  margin: 0px 0px 0px 0px;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 0px;
+  right: 0px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 0px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 5px 5px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  user-select: none;
+}
+
+/*style items (options):*/
+.select-items {
+  position: absolute;
+  background-color: #809fff;
+  top: 0px;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  margin:0px 0px 0px 0px;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+
+}
+
+.upload{
+  margin-left: 76%;
+  margin-bottom: 47px;
+  margin-top: -14px;
+}
+
+.upload button:hover{
+    color:white;
+    background-color:#007acc;
+    border:dotted 1px #000033;
+}
+.upload button:after{
+    color:white;
+    background-color:blue;
+    border:dotted 3px #000033;
+}
+
+.upload .unggah-data{
+  background-color: DodgerBlue;
+  padding: 5px 5px;
+  color: #ffffff;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  
+  width: 130px
+  border-radius: 3px;
+  background-color: DodgerBlue;
+  margin: 0px 0px -6px 0px;
+  
+}
+
+.upload .unggah-data i{
+  margin-right: 5px;
+
+}
+.download-data{
+  margin-left: 87%;
+  margin-bottom:10px;
+  margin-top: -171px;
+  
+ 
+}
+.download-data button:hover{
+    color:white;
+    background-color:#007acc;
+    border:dotted 1px #000033;
+}
+.download-data button:after{
+    color:white;
+    background-color:white;
+    border:dotted 1px #000033;
+}
+
+
+.download-data{
+  background-color: DodgerBlue;
+  padding: 5px 5px;
+  color: #ffffff;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  
+  width: 130px
+  background-color: DodgerBlue;
+  margin-left: 5px;
+  margin-top:0px;
+}
+.download-data i{
+  margin-right: 5px;
+}
+#list{
+  color:white;
+  background: #1e90ff;
+  height: 30px;
+  margin: 0px 0px -5px 0px;
+
+}
+#list option{
+  background: white;
+  color: #000;
+}

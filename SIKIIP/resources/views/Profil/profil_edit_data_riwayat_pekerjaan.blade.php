@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="/image/favicon.png">
-    <title>Data Karyawan</title>
+    <title>Profil</title>
     <link rel="stylesheet" type="text/css" href="/assets/lib/perfect-scrollbar/css/perfect-scrollbar.min.css"/>
     <link rel="stylesheet" type="text/css" href="/assets/lib/material-design-icons/css/material-design-iconic-font.min.css"/>
     <link rel="stylesheet" type="text/css" href="/assets/lib/datatables/css/dataTables.bootstrap.min.css"/>
@@ -18,8 +18,6 @@
     <link rel="stylesheet" type="text/css" href="/assets/lib/datetimepicker/css/bootstrap-datetimepicker.min.css"/>
     <link rel="stylesheet" type="text/css" href="/assets/css/float_button.css">
     <link rel="stylesheet" type="text/css" href="/css/croppie.css">
-    <!-- Toastr untuk notifikasi -->
-    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
   </head>
   <body>
     <div class="be-wrapper">
@@ -47,7 +45,7 @@
                         <div class="circular--portrait">
                             <img class="img-responsive foto-karyawan" src="/image/FotoProfil/{{Auth::user()->foto_profil}}">
                             <div id="username">
-                                <a href="/profil" class="simple_text"><h1 class="username">{{ Auth::user()->nama_karyawan }}</h1></a>
+                                <a href="profil.html" class="simple_text">{{ Auth::user()->name }}</a>
                             </div>
                            <button onclick="window.location.href='/profil'" type="button" class="btn">Profil</button>
                            <!-- <button class="btn btn-space btn-default active">Default</button> -->
@@ -84,13 +82,6 @@
                                 <a class=" " href="/penggajian">
                                    <i class="icon fas fa-money-check-alt"></i>
                                     <span>Penggajian</span>
-                                </a>
-                              </li>
-
-                              <li class="active">
-                                <a class=" " href="/dsivisi">
-                                   <img src="/assets/img/icons8-organization-chart-people-24.png">
-                                    <span>&nbsp&nbspDivisi</span>
                                 </a>
                               </li>
 
@@ -150,10 +141,9 @@
       <!-- Konten -->
       <div class="be-content">
         <div class="page-head">
-          <h2 class="page-head-title">Rincian Data Karyawan</h2>
+          <h2 class="page-head-title">Edit Profil</h2>
            <ol class="breadcrumb page-head-nav">
-            <li><a href="/datakaryawan">Data Karyawan</a></li>
-            <li class="active">Edit Data Karyawan</li>
+            <li class="active"></li>
           </ol>
         </div>
 
@@ -195,7 +185,7 @@
                           <td>{{$data->jenis_industri}}</td>
                           <td>{{$data->jabatan_akhir}}</td>
                           <td>{{$data->periode_berakhir_kerja}}</td>
-                          <td>Rp.{{$data->gaji_akhir}}</td>
+                          <td>{{$data->gaji_akhir}}</td>
                           <td>{{$data->alasan_berhenti}}</td>
                           <td>
                              <button data-toggle="modal" data-target="#edit-data-familia-{{$data->id_riwayat_pekerjaan}}" type="button" class="btn btn-space btn-warning"> Edit </button>
@@ -203,7 +193,7 @@
                           </td>
 
                            <!-- Modals untuk Edit Data Familia -->
-                           <form id="form_submit_edit" name="submit1" action="/datakaryawan/{{$data->id_riwayat_pekerjaan}}/update/data_riwayat_pekerjaan" method="POST" enctype="multipart/form-data">
+                           <form id="form_submit_edit" name="submit1" action="/datakaryawan/{{$data->id_riwayat_pekerjaan}}/update/data_riwayat_pekerjaan" method="POST">
                                  @csrf
                             <div id="edit-data-familia-{{$data->id_riwayat_pekerjaan}}" tabindex="-1" role="dialog" class="modal fade colored-header colored-header-primary">
                             <div class="modal-dialog">
@@ -233,20 +223,12 @@
                                   </div>
                                   <div class="form-group">
                                     <label>Gaji Akhir</label>
-                                    <input name="gaji_akhir" value="{{$data->gaji_akhir}}" type="number" class="form-control" >
+                                    <input name="periode_berakhir_kerja" value="{{$data->periode_berakhir_kerja}}" type="text" class="form-control" >
                                   </div>
                                   <div class="form-group">
                                     <label>Alasan Berhenti</label>
                                     <input name="alasan_berhenti" value="{{$data->alasan_berhenti}}" type="text" class="form-control" >
                                   </div>
-                                  <label>Foto Verklarin</label>
-                                   <div align="center" class="form-group">
-                                    <img id="foto_verklarin" src="/image/Verklarin/{{$data->foto_verklarin}}" alt="Placeholder" class="img-data"><br>
-                                    <div align="center" class="upload-btn-wrapper">
-                                      <button class="btn btn-default">Upload Verklarin</button>
-                                      <input id="input_foto_verklarin" type="file" name="foto_verklarin"/>
-                                    </div>
-                                   </div>
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" data-dismiss="modal" class="btn btn-default">Batal</button>
@@ -295,11 +277,11 @@
                       @foreach($foto_verklarin as $riwayat)
 
                       <td align="center" class="form-group">
-                          <img data-toggle="modal" data-target="#modal-transparent-pekerjaan{{$riwayat->id_riwayat_pekerjaan}}" src="/image/Verklarin/{{$riwayat->foto_verklarin}}" alt="Placeholder" class="img-data">
+                          <img data-toggle="modal" data-target="#modal-transparent-pendidikan{{$riwayat->id_riwayat_pekerjaan}}" src="/image/Verklarin/{{$riwayat->foto_verklarin}}" alt="Placeholder" class="img-data">
                       </td>
 
                         <!-- Modal Foto Ijazah dan Sertifikat-->
-                          <div  class="modal modal-transparent fade" id="modal-transparent-pekerjaan{{$riwayat->id_riwayat_pekerjaan}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                          <div  class="modal modal-transparent fade" id="modal-transparent-pendidikan{{$riwayat->id_riwayat_pekerjaan}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-header">
                                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 </div>
@@ -322,13 +304,13 @@
 
           
               <div class="modal-footer">
-                  <a href="/datakaryawan/{{$data_karyawan->nik}}/edit/data_riwayat_pekerjaan"><button type="button" data-dismiss="modal" class="btn btn-default">Kembali</button></a>
+                  <a href="/profil/{nik}/edit/data_pendidikan"><button type="button" data-dismiss="modal" class="btn btn-default">Kembali</button></a>
                   <button data-toggle="modal" data-target="#tambah-data-familia" type="button" data-dismiss="modal" class="btn btn-primary">Tambah</button>
-                  <a href="/datakaryawan"><button type="button" data-dismiss="modal" class="btn btn-default">Selesai</button></a>
+                  <a href="/profil"><button type="button" data-dismiss="modal" class="btn btn-default">Selesai</button></a>
               </div>
 
                    <!-- Modals untuk Edit Tambah Data Familia -->
-                        <form id="form_submit2" name="form_submit2" action="/datakaryawan/tambah/update/data_riwayat_pekerjaan" method="POST" enctype="multipart/form-data">
+                        <form id="form_submit2" name="form_submit2" action="/datakaryawan/tambah/update/data_pendidikan" method="POST">
                                  @csrf
                             <div id="tambah-data-familia" tabindex="-1" role="dialog" class="modal fade colored-header colored-header-primary">
                             <div class="modal-dialog">
@@ -357,7 +339,7 @@
                                   </div>
                                   <div class="form-group">
                                     <label>Gaji Akhir</label>
-                                    <input name="gaji_akhir" type="number" class="form-control" required="">
+                                    <input name="periode_berakhir_kerja" type="text" class="form-control" required="">
                                   </div>
                                   <div class="form-group">
                                     <label>Alasan Berhenti</label>
@@ -368,10 +350,10 @@
                                   </div>
                                   <label>Foto Verklarin</label>
                                    <div align="center" class="form-group">
-                                    <img id="tambah_foto_verklarin" src="/image/Verklarin/140x140.png" alt="Placeholder" class="img-data"><br>
+                                    <img id="foto_verklarin" src="/image/Verklarin/140x140.png" alt="Placeholder" class="img-data"><br>
                                     <div align="center" class="upload-btn-wrapper">
-                                      <button class="btn btn-default">Upload Verklarin</button>
-                                      <input id="tambah_input_foto_verklarin" type="file" name="foto_verklarin" required=""/>
+                                      <button class="btn">Upload Verklarin</button>
+                                      <input id="input_foto_verklarin" type="file" name="foto_ijazah_verklarin" required=""/>
                                     </div>
                                    </div>
 
@@ -402,44 +384,6 @@
       </div>
       </div>
     
-    <!-- Script Toastr untuk notifikasi-->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-
-    <script>
-       @if (Session::has('message'))
-          var type = "{{Session::get('alert-type','info')}}";
-          toastr.options = {
-            "debug": false,
-            "onclick": null,
-            "fadeIn": 300,
-            "fadeOut": 1000,
-            "timeOut": 5000,
-            "extendedTimeOut": 1000
-          }
-
-          switch(type)
-          {
-            case 'info':
-            toastr.info("{{Session::get('message')}}");
-            break;
-
-            case 'success':
-            toastr.success("{{Session::get('message')}}");
-            break;
-
-            case 'warning':
-            toastr.warning("{{Session::get('message')}}");
-            break;
-
-            case 'error':
-            toastr.error("{{Session::get('message')}}");
-            break;
-          }
-
-       @endif
-
-    </script>
 
     <!-- JS untuk opsi resign di bagian edit data karyawan -->
 
@@ -478,26 +422,6 @@
 
       $("#input_foto_verklarin").change(function () {
               readURL_verklarin(this);
-      });
-      //end fungsi preview foto verklarin
-
-      //fungsi preview foto verklarin
-
-      function readURL_tambah_verklarin(input) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $('#tambah_foto_verklarin')
-                        .attr('src', e.target.result);
-                };
-
-                reader.readAsDataURL(input.files[0]);
-            }
-      }
-
-      $("#tambah_input_foto_verklarin").change(function () {
-              readURL_tambah_verklarin(this);
       });
       //end fungsi preview foto verklarin
 

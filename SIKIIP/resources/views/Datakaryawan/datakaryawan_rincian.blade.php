@@ -28,9 +28,9 @@
                 <img src="/image/logo.png">
             </div>
 
-                 <!--  Sidebar Brand Logo End -->  
+                 <!--  Sidebar Brand Logo End -->
 
-                  <!--  Sidebar Start -->  
+                  <!--  Sidebar Start -->
 
             <div class="left-sidebar-wrapper"> <a href="#" class="left-sidebar-toggle">MENU</a>
              <div class="left-sidebar-spacer">
@@ -54,14 +54,14 @@
 
                         <ul class="sidebar-elements">
                             <li class="divider">Menu
-                                <hr class="Menu">  
+                                <hr class="Menu">
                             </li>
 
                             <li class="active"><a href="/home">
                                 <i class="icon fas fa-home"></i>
                                 <span>Beranda</span></a>
                             </li>
-                                                                     
+
                             <li class="active">
                                 <a class="" href="/datakaryawan">
                                     <i class="icon far fa-address-book"></i>
@@ -84,15 +84,22 @@
                               </li>
 
                               <li class="active">
+                                <a class=" " href="/dsivisi">
+                                   <img src="/assets/img/icons8-organization-chart-people-24.png">
+                                    <span>&nbsp&nbspDivisi</span>
+                                </a>
+                              </li>
+
+                              <li class="active">
                                 <a class=" " href="/persetujuan_izin">
                                    <i class="icon far fa-calendar-check"></i>
                                     <span>Persetujuan Izin</span>
                                 </a>
-                              </li>  
+                              </li>
 
                               <li class="divider">Personal
-                                 <hr class="Menu">  
-                              </li> 
+                                 <hr class="Menu">
+                              </li>
 
                               <li class="active">
                                 <a class=" " href="/gaji">
@@ -126,9 +133,9 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                 </form>
-                              </li>                              
+                              </li>
                             </ul>
-                         </div>                         
+                         </div>
                     </div>
                  </div>
                </div>
@@ -150,7 +157,7 @@
             <div class="col-sm-12">
               <div class="panel panel-default panel-table">
                 <div class="panel-body">
-                
+
             <!--Data Pribadi-->
             <div style="margin-top: 10px;" class="col-sm-12">
               <div class="panel panel-default panel-table">
@@ -167,202 +174,176 @@
                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                     </div>
                                     <div class="modal-body">
-                                      <center>  
+                                      <center>
                                         <img src="/image/FotoKaryawan/{{$data_karyawan->foto_karyawan}}" alt="" class="img-responsive">
                                       </center>
                                     </div>
                                     <div class="modal-footer">
-                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> 
+                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                     </div>
                               </div>
-                            <div class="form-group">
-                              <label>NIK</label>
-                              <input type="number" value="{{$data_karyawan->nik}}" placeholder="1234567098765432" class="form-control" readonly="">
-                            </div>
-                            <div class="form-group">
-                              <label>Nama</label>
-                              <input type="text" value="{{$data_karyawan->nama_karyawan}}" placeholder="Adinda Virguinia Ayu Permata Manihuruk" class="form-control" readonly="">
-                            </div>
-                              <div class="form-group">
-                              <label>Jabatan/Divisi</label>
-                              <input type="text" value="{{$data_karyawan->divisi}}" placeholder="Tech Development" class="form-control" readonly="">
-                            </div>
-                            <div class="form-group">
-                              <label>Email address</label>
-                              <input type="email" value="{{$data_karyawan->email}}" class="form-control" readonly="">
-                            </div>
-                            <div class="form-group">
-                              @php
+              <div class="user-info-list ">
+                <div class="panel-heading panel-heading-divider"></div>
+                  <div class="panel-body">
+                    <table class="no-border no-strip skills">
+                      <tbody class="no-border-x no-border-y">
+                          <tr>
+                          <td class="item">NIK<span class="icon s7-portfolio"></span></td>
+                          <td>{{$data_karyawan->nik}}</td>
+                        </tr>
+                         <tr>
+                          <td class="item">ID Sidik Jari<span class="icon s7-portfolio"></span></td>
+                          <td>100</td>
+                        </tr>
+                        <tr>
+                          <td class="item">Nama<span class="icon s7-portfolio"></span></td>
+                          <td>{{$data_karyawan->nama_karyawan}}</td>
+                        </tr>
+                           <tr>
+                          <td class="item">Alamat Email<span class="icon s7-portfolio"></span></td>
+                          <td>{{$data_karyawan->email}}</td>
+                        </tr>
+                        <tr>
+                          <td class="item">Jabatan/Divisi<span class="icon s7-portfolio"></span></td>
+                          <td>{{$data_karyawan->divisi}}</td>
+                        </tr>
+                         <tr>
+                           @php
                                 $tanggal_masuk = DateTime::createFromFormat('Y-m-d',$data_karyawan->masa_kerja)->format('Y-m-d');
                                 $tanggal_masuk = new DateTime($tanggal_masuk);
                                 $sekarang   = new DateTime();
 
                                 $perbedaan = $tanggal_masuk->diff($sekarang);
-                                
-                              @endphp
-                              <label>Masa Kerja</label>
-                              <input type="text" value="{{$perbedaan->y}} Tahun {{$perbedaan->m}} Bulan {{$perbedaan->d}} Hari" class="form-control" readonly="">              
-                            </div>
-                            <div class="form-group">
-                              <label>Alamat KTP</label>
-                              <input type="text" value="{{$data_karyawan->alamat_ktp}}" class="form-control" readonly="">
-                            </div>
-                            <div class="form-group">
-                              <label>Alamat Tinggal</label>
-                              <input type="text" value="{{$data_karyawan->alamat_tinggal}}" class="form-control" readonly="">
-                            </div>
-                             <div class="form-group">
-                              <label>Tempat Kelahiran</label>
-                              <input type="text" value="{{$data_karyawan->tempat_lahir}}" class="form-control" readonly="">
-                            </div>
-                            <div class="row">
-                              <div class="form-group col-md-12">
-                                <label>Tanggal Lahir</label>
-                              </div>
-                            </div>
-                            <div class="row no-margin-y">
-                              @if($data_karyawan->tanggal_lahir)
-                              <div class="form-group col-xs-3">
-                                <input type="text" value="{{DateTime::createFromFormat('Y-m-d',$data_karyawan->tanggal_lahir)->format('d')}}" class="form-control" readonly="">
-                              </div>
-                              <div class="form-group col-xs-3">
-                                <input type="text" value="{{DateTime::createFromFormat('Y-m-d',$data_karyawan->tanggal_lahir)->format('M')}}" class="form-control" readonly="">
-                              </div>
-                              <div class="form-group col-xs-3">
-                                <input type="text" value="{{DateTime::createFromFormat('Y-m-d',$data_karyawan->tanggal_lahir)->format('Y')}}" class="form-control" readonly="">
-                              </div>
-                              @else
-                              <div class="form-group col-xs-3">
-                                <input type="text" value="" class="form-control" readonly="">
-                              </div>
-                              <div class="form-group col-xs-3">
-                                <input type="text" value="" class="form-control" readonly="">
-                              </div>
-                              <div class="form-group col-xs-3">
-                                <input type="text" value="" class="form-control" readonly="">
-                              </div>
-                              @endif
-                            </div>
-                             <div class="form-group">
-                              <label>No.Telepon</label>
-                              <input type="number" value="{{$data_karyawan->no_telp}}" class="form-control" readonly="">
-                            </div>
-                             <div class="form-group">
-                              <label>No.KTP</label>
-                              <input type="number" value="{{$data_karyawan->no_ktp}}" class="form-control" readonly="">
-                             </div>
-                             <div align="center" class="form-group">
-                                                          <div align="center" class="form-group noSwipe">
-                             <table>
-                              <tr>
-                               <td align="center">Foto Kartu Keluarga</td>
-                               <td>&nbsp;&nbsp;</td>
-                               <td align="center">Foto KTP</td>
-                              </tr>
-                              <tr>
-                              <td>
-                              <img data-toggle="modal" id="foto_kk" data-target="#modal-transparent-kk" src="/image/KKKTP/{{$data_karyawan->foto_kk}}" alt="Placeholder" class="img-data"><br>
-                              </td>
-                              <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                              <td>
-                              <img data-toggle="modal" id="foto_ktp" data-target="#modal-transparent-ktp" src="/image/KKKTP/{{$data_karyawan->foto_ktp}}" alt="Placeholder" class="img-data"><br>
-                              </td>
-                            </tr>
-                            </table>
-                            </div>
-                            </div>
-                             <!-- Modal Foto Kartu Keluarga-->
+                           @endphp
+                          <td class="item">Masa Kerja<span class="icon s7-portfolio"></span></td>
+                          <td>{{$perbedaan->y}} Tahun {{$perbedaan->m}} Bulan {{$perbedaan->d}} Hari</td>
+                        </tr>
+                         <tr>
+                          <td class="item">Alamat KTP<span class="icon s7-portfolio"></span></td>
+                          <td>{{$data_karyawan->alamat_ktp}}</td>
+                        </tr>
+                         <tr>
+                          <td class="item">Alamat Tinggal<span class="icon s7-portfolio"></span></td>
+                          <td>{{$data_karyawan->alamat_tinggal}}</td>
+                        </tr>
+                         <tr>
+                          <td class="item">Tempat Tanggal Kelahiran<span class="icon s7-portfolio"></span></td>
+                             @php
+                             if(is_null($data_karyawan->tanggal_lahir)){
+                                $tanggal_lahir = null;
+                             } else {
+                                $tanggal_lahir = DateTime::createFromFormat('Y-m-d',$data_karyawan->tanggal_lahir)->format('d-m-Y');
+                             }
+                             @endphp
+                          <td>{{$data_karyawan->tempat_lahir}}, {{$tanggal_lahir}}</td>
+                        </tr>
+                         <tr>
+                          <td class="item">Nomor Telepon<span class="icon s7-portfolio"></span></td>
+                          <td>{{$data_karyawan->no_telp}}</td>
+                        </tr>
+                         <tr>
+                          <td class="item">Nomor KTP<span class="icon s7-portfolio"></span></td>
+                          <td>{{$data_karyawan->no_ktp}}</td>
+                        </tr>
+                        <tr>
+                          <td class="item">Nomor BPJS<span class="icon s7-portfolio"></span></td>
+                          <td>{{$data_karyawan->no_bpjs}}</td>
+                        </tr>
+                         <tr>
+                          <td class="item">Nomor NPWP<span class="icon s7-portfolio"></span></td>
+                          <td>{{$data_karyawan->no_npwp}}</td>
+                        </tr>
+                         <tr>
+                          <td class="item">Nomor Telepon Darurat<span class="icon s7-portfolio"></span></td>
+                          <td>{{$data_karyawan->no_telp_darurat}}</td>
+                        </tr>
+                         <tr>
+                          <td class="item">Hubungan dengan no. telp darurat<span class="icon s7-portfolio"></span></td>
+                          <td>{{$data_karyawan->hub_no_telp_darurat}}</td>
+                        </tr>
+                         <tr>
+                          <td class="item">Status<span class="icon s7-portfolio"></span></td>
+                          <td>{{$data_karyawan->status_kerja}}</td>
+                        </tr>
+                    </tbody>
+                  </table >
+                  <table>
+                    <thead>
+                      <th align="center">Foto Kartu Keluarga</th>
+                      <th align="center">Foto KTP</th>
+                      <th align="center">Foto BPJS</th>
+                      <th align="center">Foto NPWP</th>
+                    </thead>
+                    <tbody>
+                            <td>
+                              <img data-toggle="modal" id="foto_kk" data-target="#modal-transparent-kk" src="/image/KKKTP/{{$data_karyawan->foto_kk}}" alt="Placeholder" class="img-data">
+
+                              <!-- Modal Foto Kartu Keluarga-->
                               <div  class="modal modal-transparent fade" id="modal-transparent-kk" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                     <div class="modal-header">
                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                     </div>
                                     <div class="modal-body">
-                                      <center>  
-                                        <img src="/image/KKKTP/{{$data_karyawan->foto_kk}}" alt="" class="img-responsive">
+                                      <center>
+                                        <img id="modal_foto_kk" src="/image/KKKTP/{{$data_karyawan->foto_kk}}" alt="" class="img-responsive">
                                       </center>
                                     </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> 
-                                    </div>
                               </div>
-                            
-                             <!-- Modal Foto KTP-->
+                            </td>
+                            <td>
+                              <img data-toggle="modal" id="foto_ktp" data-target="#modal-transparent-ktp" src="/image/KKKTP/{{$data_karyawan->foto_ktp}}" alt="Placeholder" class="img-data">
+
+                              <!-- Modal Foto KTP-->
                               <div  class="modal modal-transparent fade" id="modal-transparent-ktp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                     <div class="modal-header">
                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                     </div>
                                     <div class="modal-body">
-                                      <center>  
-                                        <img src="/image/KKKTP/{{$data_karyawan->foto_ktp}}" alt="" class="img-responsive">
+                                      <center>
+                                        <img id="modal_foto_ktp" src="/image/KKKTP/{{$data_karyawan->foto_ktp}}" alt="" class="img-responsive">
                                       </center>
                                     </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> 
-                                    </div>
                               </div>
-                             <div class="form-group">
-                              <label>No.BPJS</label>
-                              <input type="number" value="{{$data_karyawan->no_ktp}}" class="form-control" readonly="">
-                             </div>
-                             <label>Foto BPJS</label>
-                             <div align="center" class="form-group">
-                              <img data-toggle="modal" data-target="#modal-transparent-bpjs" src="/image/BPJS/{{$data_karyawan->foto_bpjs}}" alt="Placeholder" class="img-data">
-                             </div>
-                             <!-- Modal Foto BPJS-->
+                            </td>
+                            <td>
+                              <img data-toggle="modal" id="foto_bpjs" data-target="#modal-transparent-bpjs" src="/image/BPJS/{{$data_karyawan->foto_bpjs}}" alt="Placeholder" class="img-data">
+
+                              <!-- Modal Foto BPJS-->
                               <div  class="modal modal-transparent fade" id="modal-transparent-bpjs" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                     <div class="modal-header">
                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                     </div>
                                     <div class="modal-body">
-                                      <center>  
-                                        <img src="/image/BPJS/{{$data_karyawan->foto_bpjs}}" alt="" class="img-responsive">
+                                      <center>
+                                        <img id="modal_foto_bpjs" src="/image/BPJS/{{$data_karyawan->foto_bpjs}}" alt="" class="img-responsive">
                                       </center>
                                     </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> 
-                                    </div>
                               </div>
-                             <div class="form-group">
-                              <label>No.NPWP</label>
-                              <input type="number" value="{{$data_karyawan->no_npwp}}" class="form-control" readonly="">
-                            </div>
-                            <label>Foto NPWP</label><br>
-                            <div align="center" class="form-group">
-                             <img data-toggle="modal" data-target="#modal-transparent-npwp" src="/image/NPWP/{{$data_karyawan->foto_npwp}}" alt="Placeholder" class="img-data">
-                            </div>
-                            <!-- Modal Foto NPWP-->
+                            </td>
+                            <td>
+                              <img data-toggle="modal" id="foto_npwp" data-target="#modal-transparent-npwp" src="/image/NPWP/{{$data_karyawan->foto_npwp}}" alt="Placeholder" class="img-data">
+
+                              <!-- Modal Foto NPWP-->
                               <div  class="modal modal-transparent fade" id="modal-transparent-npwp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                     <div class="modal-header">
                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                     </div>
                                     <div class="modal-body">
-                                      <center>  
-                                        <img src="/image/NPWP/{{$data_karyawan->foto_npwp}}" alt="" class="img-responsive">
+                                      <center>
+                                        <img id="modal_foto_npwp" src="/image/NPWP/{{$data_karyawan->foto_npwp}}" alt="" class="img-responsive">
                                       </center>
                                     </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> 
-                                    </div>
                               </div>
-                            <div class="form-group">
-                              <label>No.Telepon Darurat</label>
-                              <input type="number" value="{{$data_karyawan->no_telp_darurat}}" class="form-control" readonly="">
-                            </div>
-                            <div class="form-group">
-                              <label>Hubungan dengan No.Telepon Darurat</label>
-                              <input type="text" value="{{$data_karyawan->hub_no_telp_darurat}}" class="form-control" readonly="">              
-                            </div>
-                            <div class="form-group">
-                              <label>Status</label>
-                              <input type="text" value="{{$data_karyawan->status_kerja}}" class="form-control" readonly="">
-                            </div>
+                            </td>
+                      </tbody>
+                  </table>
+                </div>
           </div>
         </div>
       </div>
           <!-- End Modal Body -->
 
           <!--Data Keluarga-->
-            <div class="col-sm-12">
               <div class="panel panel-default panel-table">
                 <div class="panel-heading">Data keluarga
                   <div class="tools dropdown"></div>
@@ -370,35 +351,29 @@
                 <div class="panel-body">
                   <div class="table-responsive noSwipe">
                     <div class="modal-body">
-
-                      <div class="table-responsive noSwipe">
-                    <table class="table table-striped table-hover">
-                     <thead>
-                      <tr>
-                        <th style="width:30%">Nama Keluarga</th>
-                        <th style="width:20%">Hubungan</th>
-                        <th style="width:20%">Jenis Kelamin</th>
-                        <th style="width:20%">Tempat Tanggal Lahir</th>
-                      </tr>
-                    </thead>
-                       @foreach($data_familia as $data)
+                       <div class="table-responsive noSwipe">
+                        <table class="table table-striped table-hover">
+                         <thead>
+                            <tr>
+                              <th style="width:30%">Nama Keluarga</th>
+                              <th style="width:20%">Hubungan</th>
+                              <th style="width:20%">Jenis Kelamin</th>
+                              <th style="width:20%">Tempat Tanggal Lahir</th>
+                            </tr>
+                        </thead>
+                           @foreach($data_familia as $data)
                         <tbody>
-                        <tr>
-                          <td>{{$data->nama_familia}}</td>
-                          <td>{{$data->jenis_hubungan}}</td>
-                          <td>{{$data->jenis_kelamin_familia}}</td>
-                          <td>{{$data->tempat_lahir_familia}}, {{$data->tanggal_lahir_familia}} </td>
-                          </tr>
+                            <tr>
+                              <td>{{$data->nama_familia}}</td>
+                              <td>{{$data->jenis_hubungan}}</td>
+                              <td>{{$data->jenis_kelamin_familia}}</td>
+                              <td>{{$data->tempat_lahir_familia}}, {{$data->tanggal_lahir_familia}} </td>
+                            </tr>
                         </tbody>
-                       @endforeach
-                    </table>
-                    <div align="center" class="form-group">
-                    <tr><br>
-                    </tr>
-                    </div>
-                  </div>
-
-           
+                           @endforeach
+                        </table>
+                        <div align="center" class="form-group">
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -406,8 +381,8 @@
               </div>
 
 
+
           <!--Riwayat Pendidikan -->
-            <div class="col-sm-12">
               <div class="panel panel-default panel-table">
                 <div class="panel-heading">Riwayat Pendidikan
                   <div class="tools dropdown"></div>
@@ -455,12 +430,12 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                               </div>
                               <div class="modal-body">
-                                <center>  
+                                <center>
                                   <img src="/image/IjazahSertifikat/{{$riwayat->foto_ijazah_sertifikat}}" alt="" class="img-responsive">
                                 </center>
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> 
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                               </div>
                         </div>
                       @endif
@@ -470,11 +445,9 @@
                   </div>
                 </div>
               </div>
-              </div>
             </div>
 
             <!--Riwayat pekerjaan-->
-            <div class="col-sm-12">
               <div class="panel panel-default panel-table">
                 <div class="panel-heading">Riwayat Pekerjaan
                   <div class="tools dropdown"></div>
@@ -502,7 +475,7 @@
                             <td>{{$riwayat_pekerjaan->jenis_industri}}</td>
                             <td>{{$riwayat_pekerjaan->jabatan_akhir}}</td>
                             <td>{{$riwayat_pekerjaan->periode_berakhir_kerja}}</td>
-                            <td>{{$riwayat_pekerjaan->gaji_akhir}}</td>
+                            <td>Rp.{{$riwayat_pekerjaan->gaji_akhir}}</td>
                             <td>{{$riwayat_pekerjaan->alasan_berhenti}}</td>
                           </tr>
                           </tbody>
@@ -527,12 +500,12 @@
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                   </div>
                                   <div class="modal-body">
-                                    <center>  
+                                    <center>
                                       <img src="/image/Verklarin/{{$verklarin->foto_verklarin}}" alt="" class="img-responsive">
                                     </center>
                                   </div>
                                   <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button> 
+                                    <button type="button" class="btn btn-default" data-dismiss="modal" >Close</button>
                                   </div>
                             </div>
                         @endif
@@ -541,7 +514,6 @@
                     </div>
                   </div>
                 </div>
-              </div>
               </div>
             </div>
               </div>
@@ -560,7 +532,7 @@
         <p>Sistem Informasi Karyawan<b> Idea Imaji Persada</b></p>
       </div>
       </div>
-    
+
 
     <!-- JS untuk opsi resign di bagian edit data karyawan -->
 

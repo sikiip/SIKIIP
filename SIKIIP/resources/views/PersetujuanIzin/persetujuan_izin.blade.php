@@ -11,8 +11,9 @@
     <link rel="stylesheet" type="text/css" href="assets/lib/perfect-scrollbar/css/perfect-scrollbar.min.css"/>
     <link rel="stylesheet" type="text/css" href="assets/lib/material-design-icons/css/material-design-iconic-font.min.css"/>
     <link rel="stylesheet" type="text/css" href="assets/lib/datatables/css/dataTables.bootstrap.min.css"/>
-
-    <!-- CSS -->
+<!--     css -->
+    <!-- <link rel="stylesheet" href="/assets/css/datakaryawan.css" type="text/css"/> -->
+    <link rel="stylesheet" href="/assets/css/presensi.css" type="text/css"/>
     <link rel="stylesheet" href="/assets/css/style.css" type="text/css"/>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
@@ -51,6 +52,7 @@
                                 <a href="profil.html" class="simple_text">{{ Auth::user()->name }}</a>
                             </div>
                            <button onclick="window.location.href='/profil'" type="button" class="btn">Profil</button>
+                           <!-- <button class="btn btn-space btn-default active">Default</button> -->
                         </div>
                     </div>
 
@@ -145,10 +147,7 @@
        <!--   Content Start  -->
 <div class="be-wrapper be-fixed-sidebar">
     <div class="be-content be-icons-list">
-      <div class="page-head">
-          <h2 class="page-head-title">Persetujuan Izin</h2>
-        </div>
-     
+      <h3 class="page-header"><i class="fa far fa-calendar-check"></i><span>Persetujuan Izin</span></h3>
       <div class="main-content container-fluid">
         <div class="row">
           <div class="col-lg-12">
@@ -157,14 +156,13 @@
         </div>
 
         <div class="panel panel-default panel-table">
-         <div class="panel-body">      
-          <table id="table1" class="table table-striped table-hover table-fw-widget"> 
+        <div class="panel-body">      
+         <table id="table1" class="table table-striped table-hover table-fw-widget"> 
                 <thead>
                   <tr>
                     <th>NIK</th>
                     <th>Nama</th>
                     <th>Divisi</th>
-                    <th>Alasan</th>
                     <th>Keterangan</th>
                     <th>Tindakan</th>
                     
@@ -176,7 +174,6 @@
                     <td>Alexander</td>
                     <td>Development Technologi</td>
                     <td>Sakit</td>
-                    <td>Diterima </td>
                     <td>
                       <button data-toggle="modal" data-target="#izinkan" type="button" class="btn btn-space btn-primary">Izinkan</button>
                       <button data-toggle="modal" data-target="#tolak" type="button" class="btn btn-space btn-danger">Tolak</button>
@@ -188,7 +185,6 @@
                     <td>Anita</td>
                     <td>Desain Grafis</td>
                     <td>Sakit</td>
-                    <td>Ditolak</td>
                     <td>
                       <button data-toggle="modal" data-target="#izinkan" type="button" class="btn btn-space btn-primary">Izinkan</button>
                       <button data-toggle="modal" data-target="#tolak" type="button" class="btn btn-space btn-danger">Tolak</button>
@@ -201,13 +197,51 @@
                     <td>Mikael Jeremi</td>
                     <td>Content Writer</td>
                     <td>Sakit</td>
-                    <td>Proses</td>
                     <td>
                       <button data-toggle="modal" data-target="#izinkan" type="button" class="btn btn-space btn-primary">Izinkan</button>
                       <button data-toggle="modal" data-target="#tolak" type="button" class="btn btn-space btn-danger">Tolak</button>
                     </td>
                   </tr>      
-
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                      <button data-toggle="modal" data-target="#izinkan" type="button" class="btn btn-space btn-primary">Izinkan</button>
+                      <button data-toggle="modal" data-target="#tolak" type="button" class="btn btn-space btn-danger">Tolak</button>
+                    </td>
+                  </tr>      
+                   <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                      <button data-toggle="modal" data-target="#izinkan" type="button" class="btn btn-space btn-primary">Izinkan</button>
+                      <button data-toggle="modal" data-target="#tolak" type="button" class="btn btn-space btn-danger">Tolak</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                     <button data-toggle="modal" data-target="#izinkan" type="button" class="btn btn-space btn-primary">Izinkan</button>
+                      <button data-toggle="modal" data-target="#tolak" type="button" class="btn btn-space btn-danger">Tolak</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                     <button data-toggle="modal" data-target="#izinkan" type="button" class="btn btn-space btn-primary">Izinkan</button>
+                      <button data-toggle="modal" data-target="#tolak" type="button" class="btn btn-space btn-danger">Tolak</button>
+                    </td>
+                  </tr>     
                 </tbody>
               </table>
             </div>
