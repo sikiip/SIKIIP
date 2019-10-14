@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use App\DataKaryawan;
 use Illuminate\Http\Request;
 
 class KontakKaryawanController extends Controller
@@ -12,8 +14,11 @@ class KontakKaryawanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('KontakKaryawan.kontak_karyawan');
+    {   
+        
+        $kontak_karyawan = \App\DataKaryawan::all();
+
+        return view('KontakKaryawan.kontak_karyawan', ['kontak_karyawan' => $kontak_karyawan]);
     }
 
     /**

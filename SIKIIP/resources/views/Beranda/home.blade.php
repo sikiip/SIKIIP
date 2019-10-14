@@ -2,174 +2,60 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="/image/favicon.png">
-    <title>Beranda</title>
-    <link rel="stylesheet" type="text/css" href="assets/lib/perfect-scrollbar/css/perfect-scrollbar.min.css"/>
-    <link rel="stylesheet" type="text/css" href="assets/lib/material-design-icons/css/material-design-iconic-font.min.css"/>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-    <link rel="stylesheet" type="text/css" href="assets/lib/jquery.vectormap/jquery-jvectormap-1.2.2.css"/>
-    <link rel="stylesheet" type="text/css" href="assets/lib/jqvmap/jqvmap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="assets/lib/datetimepicker/css/bootstrap-datetimepicker.min.css"/>
-    <link rel="stylesheet" href="assets/css/style.css" type="text/css"/>
-        <!-- <link rel="stylesheet" href="assets/css/beranda.css" type="text/css"/> -->
-    </head>
-    <body>
-      <div class="be-wrapper">
-       <div class="be-wrapper be-fixed-sidebar">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-            <!--  Sidebar Brand Logo -->
+  <link rel="shortcut icon" href="/image/favicon.png">
+  <title>Beranda</title>
+  <link rel="stylesheet" type="text/css" href="assets/lib/perfect-scrollbar/css/perfect-scrollbar.min.css"/>
+  <link rel="stylesheet" type="text/css" href="assets/lib/material-design-icons/css/material-design-iconic-font.min.css"/>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="assets/lib/jquery.vectormap/jquery-jvectormap-1.2.2.css"/>
+  <link rel="stylesheet" type="text/css" href="assets/lib/jqvmap/jqvmap.min.css"/>
+  <link rel="stylesheet" type="text/css" href="assets/lib/datetimepicker/css/bootstrap-datetimepicker.min.css"/>
+  <link rel="stylesheet" href="assets/css/style.css" type="text/css"/>    
+</head>
+<body>
 
-          <div class="be-left-sidebar">
-            <div class="brand-logo">
-                <img src="/image/logo.png">
-            </div>
+<!-- Wrapper Start   --> 
+<div class="be-wrapper">
 
-                 <!--  Sidebar Brand Logo End -->  
+  <!--  Sidebar Start -->  
+  <div class="be-wrapper be-fixed-sidebar">
+    @include('Beranda.sidebar')
+  </div>
+  <!--  Sidebar End --> 
+ 
 
-                  <!--  Sidebar Start -->  
-
-            <div class="left-sidebar-wrapper"> <a href="#" class="left-sidebar-toggle">MENU</a>
-             <div class="left-sidebar-spacer">
-              <div class="left-sidebar-scroll">
-                <div class="left-sidebar-content">
-
-                     <!--  Sidebar Poto, Username, Edit Profil -->
-
-                    <div class="profil">
-                        <div class="circular--portrait">
-                            <img class="img-responsive foto-karyawan" src="/image/FotoProfil/{{Auth::user()->foto_profil}}">
-                            <div id="username">
-                                <a href="/profil" class="simple_text"><h1 class="username">{{ Auth::user()->nama_karyawan }}</h1></a>
-                            </div>
-                           <button onclick="window.location.href='/profil'" type="button" class="btn">Profil</button>
-                           <!-- <button class="btn btn-space btn-default active">Default</button> -->
-                        </div>
-                    </div>
-
-                             <!--  Sidebar Menu-->
-
-                        <ul class="sidebar-elements">
-                            <li class="divider">Menu
-                                <hr class="Menu">  
-                            </li>
-
-                            <li class="active"><a href="/home">
-                                <i class="icon fas fa-home"></i>
-                                <span>Beranda</span></a>
-                            </li>
-                                                                     
-                            <li class="active">
-                                <a class="" href="/datakaryawan">
-                                    <i class="icon far fa-address-book"></i>
-                                    <span>Data Karyawan</span>
-                                </a>
-                            </li>
-
-                            <li class="active">
-                                <a class=" " href="/presensi">
-                                  <i class="icon fas fa-calendar-alt"></i>
-                                  <span>Presensi</span>
-                              </a>
-                            </li>
-
-                              <li class="active">
-                                <a class=" " href="/penggajian">
-                                   <i class="icon fas fa-money-check-alt"></i>
-                                    <span>Penggajian</span>
-                                </a>
-                              </li>
-
-                              <li class="active">
-                                <a class=" " href="/persetujuan_izin">
-                                   <i class="icon far fa-calendar-check"></i>
-                                    <span>Persetujuan Izin</span>
-                                </a>
-                              </li>  
-
-                              <li class="divider">Personal
-                                 <hr class="Menu">  
-                              </li> 
-
-                              <li class="active">
-                                <a class=" " href="/gaji">
-                                  <i class="icon far fa-money-bill-alt"></i>
-                                  <span>Gaji</span>
-                                </a>
-                              </li>
-
-                              <li class="active">
-                                <a class=" " href="/kontak_karyawan">
-                                    <i class="icon far fa-id-card"></i>
-                                    <span>Kontak Karyawan</span>
-                                </a>
-                              </li>
-
-                              <li class="active">
-                                <a class=" " href="/form_izin">
-                                  <i class="icon fab fa-wpforms"></i>
-                                  <span>Form Izin</span>
-                                </a>
-                              </li>
-
-                              <li class="active">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        <i class="icon fas fa-sign-out-alt"></i>
-                                        <span>Logout</span>
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                </form>
-                              </li>                              
-                            </ul>
-                         </div>                         
-                    </div>
-                 </div>
-               </div>
-            </div>
-         </div>
-    
-
-       <!--   Content Start  -->
-<div class="be-wrapper be-fixed-sidebar">
-    <div class="be-content be-icons-list">
-        <div class="main-content container-fluid">
-          <div class="row">
-            <!-- <div class="col-xs-12 col-md-6 col-lg-3"> -->
-              <div class="welcome">
-              <p>Selamat Datang</p>
-                <a href="#">Username</a> 
-                </div>  
-                <!-- </div>  -->         
-            </div>
-           </div>
-          </div>
+  <!--  Content Start -->
+  <div class="be-content be-icons-list">
+      <div class="main-content container-fluid">
+        <div class="row">
+          <div class="welcome">
+            <p style="font-size: 30px;">Selamat Datang</p>
+            <br>
+            <p style="font-size: 35px; color: #007ACC;">{{ Auth::user()->nama_karyawan }}</p> 
+          </div>                         
         </div>
-        
-<!--   Content End  -->
-       
-<!--Footer -->
-     
-    <div class="text-center">
-      <div class="credits">
-        <p>Sistem Informasi Karyawan<b> Idea Imaji Persada</b></p>
       </div>
+  </div>
+  <!--   Content End  -->
+     
+  <!--Footer Start-->     
+  <div class="text-center">
+    <div class="credits">
+      <p>Sistem Informasi Karyawan<b> Idea Imaji Persada</b></p>
     </div>
+  </div>
+  <!--Footer End--> 
+
 </div>
+<!-- Wrapper End -->
  
 <!--  Inisialisasi Java Script -->
-
 <script src="assets/lib/jquery/jquery.min.js" type="text/javascript"></script>
 <script src="assets/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
 <script src="assets/js/main.js" type="text/javascript"></script>

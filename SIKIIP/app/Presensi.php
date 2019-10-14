@@ -11,7 +11,7 @@ class Presensi extends Model
     protected $primaryKey = 'id_presensi';
 
     protected $fillable = [
-        'id_sidik_jari', 'tanggal_presensi', 'jam_clock_in','jam_clock_out','late_presensi','early_presensi','transport_presensi','tambahan_presensi','keterangan',
+        'id_sidik_jari', 'tanggal_presensi', 'jam_clock_in', 'jam_clock_out','late_presensi','early_presensi','transport_presensi','keterangan_presensi', 'info_clock_in', 'info_clock_out', 'info_late_presensi', 'info_early_presensi',
     ];
 
         public function datakaryawan()

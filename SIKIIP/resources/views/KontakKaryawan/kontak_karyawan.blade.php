@@ -10,204 +10,84 @@
     <title>Kontak Karyawan</title>
     <link rel="stylesheet" type="text/css" href="assets/lib/perfect-scrollbar/css/perfect-scrollbar.min.css"/>
     <link rel="stylesheet" type="text/css" href="assets/lib/material-design-icons/css/material-design-iconic-font.min.css"/>
-    <link rel="stylesheet" type="text/css" href="assets/lib/datatables/css/dataTables.bootstrap.min.css"/>
-
-    <link rel="stylesheet" href="/assets/css/datakaryawan.css" type="text/css"/>
-    <link rel="stylesheet" href="/assets/css/style.css" type="text/css"/>
-    
+    <link rel="stylesheet" type="text/css" href="assets/lib/datatables/css/dataTables.bootstrap.min.css"/>    
+    <link rel="stylesheet" href="/assets/css/style.css" type="text/css"/> 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/lib/jquery.vectormap/jquery-jvectormap-1.2.2.css"/>
     <link rel="stylesheet" type="text/css" href="assets/lib/jqvmap/jqvmap.min.css"/>
     <link rel="stylesheet" type="text/css" href="assets/lib/datetimepicker/css/bootstrap-datetimepicker.min.css"/>
-  </head>
-  <body>
-    <div class="be-wrapper">
-     <div class="be-wrapper be-fixed-sidebar">
+</head>
+<body>
 
-            <!--  Sidebar Brand Logo -->
+  <!-- Wrapper Start -->
+  <div class="be-wrapper">
 
-          <div class="be-left-sidebar">
-            <div class="brand-logo">
-                <img src="/image/logo.png">
-            </div>
+    <!--  Sidebar Start -->  
+    <div class="be-wrapper be-fixed-sidebar">
+      @include('Beranda.sidebar')
+    </div>
+    <!--  Sidebar End --> 
 
-                 <!--  Sidebar Brand Logo End -->  
-
-                  <!--  Sidebar Start -->  
-
-            <div class="left-sidebar-wrapper"> <a href="#" class="left-sidebar-toggle">MENU</a>
-             <div class="left-sidebar-spacer">
-              <div class="left-sidebar-scroll">
-                <div class="left-sidebar-content">
-
-                     <!--  Sidebar Poto, Username, Edit Profil -->
-
-                    <div class="profil">
-                        <div class="circular--portrait">
-                            <img class="img-responsive" src="assets/img/avatar.png">
-                            <div id="username">
-                                <a href="profil.html" class="simple_text">{{ Auth::user()->name }}</a>
-                            </div>
-                           <button onclick="window.location.href='/profil'" type="button" class="btn">Profil</button>
-                           <!-- <button class="btn btn-space btn-default active">Default</button> -->
-                        </div>
-
-                             <!--  Sidebar Menu-->
-
-                        <ul class="sidebar-elements">
-                           <li class="divider">Menu
-                                <hr class="Menu">  
-                            </li>
-
-                            <li class="active"><a href="/home">
-                                <i class="icon fas fa-home"></i>
-                                <span>Beranda</span></a>
-                            </li>
-                                                                     
-                            <li class="active">
-                                <a class="" href="/datakaryawan">
-                                    <i class="icon far fa-address-book"></i>
-                                    <span>Data Karyawan</span>
-                                </a>
-                            </li>
-
-                            <li class="active">
-                                <a class=" " href="/presensi">
-                                  <i class="icon fas fa-calendar-alt"></i>
-                                  <span>Presensi</span>
-                              </a>
-                            </li>
-
-                              <li class="active">
-                                <a class=" " href="/penggajian">
-                                   <i class="icon fas fa-money-check-alt"></i>
-                                    <span>Penggajian</span>
-                                </a>
-                              </li>
-
-                              <li class="active">
-                                <a class=" " href="/persetujuan_izin">
-                                   <i class="icon far fa-calendar-check"></i>
-                                    <span>Persetujuan Izin</span>
-                                </a>
-                              </li>  
-
-                              <li class="divider">Personal
-                                 <hr class="Menu">  
-                              </li> 
-
-                              <li class="active">
-                                <a class=" " href="/gaji">
-                                  <i class="icon far fa-money-bill-alt"></i>
-                                  <span>Gaji</span>
-                                </a>
-                              </li>
-
-                              <li class="active">
-                                <a class=" " href="/kontak_karyawan">
-                                    <i class="icon far fa-id-card"></i>
-                                    <span>Kontak Karyawan</span>
-                                </a>
-                              </li>
-
-                              <li class="active">
-                                <a class=" " href="/form_izin">
-                                  <i class="icon fab fa-wpforms"></i>
-                                  <span>Form Izin</span>
-                                </a>
-                              </li>
-
-                              <li class="active">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        <i class="icon fas fa-sign-out-alt"></i>
-                                        <span>Logout</span>
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                </form>
-                              </li>                               
-                            </ul>
-                         </div>                         
-                    </div>
-                 </div>
-               </div>
-            </div>
-         </div>
-       </div>
-
-
-      <!-- Konten -->
-      <div class="be-content">
-         <h3 class="page-header"> <i class="far fa-id-card"></i><span>Kontak Karyawan</span></h3>
+    <!-- Konten Start -->
+    <div class="be-content">
+      <div class="page-head">
+        <h2 class="page-head-title">Kontak Karyawan</h2>
+      </div>
         <div class="main-content container-fluid">
           <div class="row">
             <div class="col-sm-12">
+
+              <!-- Table Kontak Karyawan Start -->
               <div class="panel panel-default panel-table">
                 <div class="panel-body">
+                  <div class="table-responsive noSwipe">
                   <table id="table1" class="table table-striped table-hover table-fw-widget">
                     <thead>
                       <tr>
                         <th>NIK</th>
                         <th>Nama</th>
+                        <th>Divisi</th>
                         <th>Email</th>
                         <th>No.Telepon</th>
-                       </tr>
+                        <th>No.Telepon Darurat</th>
+                        <th>Hub.Telepon Darurat</th>
+                      </tr>
                     </thead>
                     <tbody>
+                      @foreach($kontak_karyawan as $kontak_karyawan)
                       <tr class="odd gradeA">
-                        <td>1234567098765432</td>
-                        <td>
-                          Adinda Virguinia Ayu Permata Manihuruk
-                        </td>
-                        <td>dindavirguinia@gmail.com</td>
-                        <td class="center"> 085267020933 </td>
+                        <td>{{$kontak_karyawan->nik}}</td>
+                        <td> {{$kontak_karyawan->nama_karyawan}} </td>
+                        <td> {{$kontak_karyawan->divisi}} </td>
+                        <td>{{$kontak_karyawan->email}}</td>
+                        <td class="center"> {{$kontak_karyawan->no_telp}} </td>
+                        <td>{{$kontak_karyawan->no_telp_darurat}}</td>
+                        <td>{{$kontak_karyawan->hub_no_telp_darurat}}</td>
                       </tr>
-
-                       <tr class="odd gradeA">
-                        <td>1234567098765432</td>
-                        <td>
-                          Nurma Syanti
-                        </td>
-                        <td>nurmasyanti@gmail.com</td>
-                        <td class="center"> 085544332211 </td>
-                      </tr>
-
-                       <tr class="odd gradeA">
-                        <td>1234567098765432</td>
-                        <td>
-                          Miftahul Firdaus
-                        </td>
-                        <td>miftahulfirdaus@gmail.com</td>
-                        <td class="center"> 085334567890 </td>
-                      </tr>
-
-                       <tr class="odd gradeA">
-                        <td>1234567098765432</td>
-                        <td>
-                          Sulaiman Osman
-                        </td>
-                        <td>sulaimanosman@gmail.com</td>
-                        <td class="center"> 085234567890 </td>
-                      </tr>
+                      @endforeach
                     </tbody>
                   </table>
+                  </div>
                 </div>
               </div>
+             <!--  Tabel Kontak Karyawan End -->
+
             </div>
           </div>
         </div>
       </div>
+      <!--  Konten End -->
 
-     
+    <!--  Footer Start -->
      <div class="text-center">
       <div class="credits">
         <p>Sistem Informasi Karyawan<b> Idea Imaji Persada</b></p>
       </div>
-      </div>
+     </div>
+     <!-- Footer End -->
+
     </div>
+    <!-- Wrapper End -->
 
     <!-- JS untuk opsi resign di bagian edit data karyawan -->
 

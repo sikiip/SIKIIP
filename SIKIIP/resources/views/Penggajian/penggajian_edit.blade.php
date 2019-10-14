@@ -21,123 +21,14 @@
     <link rel="stylesheet" type="text/css" href="assets/lib/datetimepicker/css/bootstrap-datetimepicker.min.css"/>
   </head>
   <body>
+    <!-- Wrapper Start -->
     <div class="be-wrapper">
-     <div class="be-wrapper be-fixed-sidebar">
 
-            <!--  Sidebar Brand Logo -->
-
-          <div class="be-left-sidebar">
-            <div class="brand-logo">
-                <img src="/image/logo.png">
-            </div>
-
-                 <!--  Sidebar Brand Logo End -->  
-
-                  <!--  Sidebar Start -->  
-
-            <div class="left-sidebar-wrapper"> <a href="#" class="left-sidebar-toggle">MENU</a>
-             <div class="left-sidebar-spacer">
-              <div class="left-sidebar-scroll">
-                <div class="left-sidebar-content">
-
-                     <!--  Sidebar Poto, Username, Edit Profil -->
-
-                    <div class="profil">
-                        <div class="circular--portrait">
-                            <img class="img-responsive" src="assets/img/avatar.png">
-                            <div id="username">
-                                <a href="profil.html" class="simple_text">{{ Auth::user()->name }}</a>
-                            </div>
-                           <button onclick="window.location.href='/profil'" type="button" class="btn">Profil</button>
-                           <!-- <button class="btn btn-space btn-default active">Default</button> -->
-                        </div>
-
-                             <!--  Sidebar Menu-->
-
-                        <ul class="sidebar-elements">
-                           <li class="divider">Menu
-                                <hr class="Menu">  
-                            </li>
-
-                            <li class="active"><a href="/home">
-                                <i class="icon fas fa-home"></i>
-                                <span>Beranda</span></a>
-                            </li>
-                                                                     
-                            <li class="active">
-                                <a class="" href="/datakaryawan">
-                                    <i class="icon far fa-address-book"></i>
-                                    <span>Data Karyawan</span>
-                                </a>
-                            </li>
-
-                            <li class="active">
-                                <a class=" " href="/presensi">
-                                  <i class="icon fas fa-calendar-alt"></i>
-                                  <span>Presensi</span>
-                              </a>
-                            </li>
-
-                              <li class="active">
-                                <a class=" " href="/penggajian">
-                                   <i class="icon fas fa-money-check-alt"></i>
-                                    <span>Penggajian</span>
-                                </a>
-                              </li>
-
-                              <li class="active">
-                                <a class=" " href="/persetujuan_izin">
-                                   <i class="icon far fa-calendar-check"></i>
-                                    <span>Persetujuan Izin</span>
-                                </a>
-                              </li>  
-
-                              <li class="divider">Personal
-                                 <hr class="Menu">  
-                              </li> 
-
-                              <li class="active">
-                                <a class=" " href="/gaji">
-                                  <i class="icon far fa-money-bill-alt"></i>
-                                  <span>Gaji</span>
-                                </a>
-                              </li>
-
-                              <li class="active">
-                                <a class=" " href="/kontak_karyawan">
-                                    <i class="icon far fa-id-card"></i>
-                                    <span>Kontak Karyawan</span>
-                                </a>
-                              </li>
-
-                              <li class="active">
-                                <a class=" " href="/form_izin">
-                                  <i class="icon fab fa-wpforms"></i>
-                                  <span>Form Izin</span>
-                                </a>
-                              </li>
-
-                              <li class="active">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        <i class="icon fas fa-sign-out-alt"></i>
-                                        <span>Logout</span>
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                </form>
-                              </li>                               
-                            </ul>
-                         </div>                         
-                    </div>
-                 </div>
-               </div>
-            </div>
-         </div>
-       </div>
-
+      <!--  Sidebar Start -->  
+      <div class="be-wrapper be-fixed-sidebar">
+        @include('Beranda.sidebar')
+      </div>
+      <!--  Sidebar End --> 
 
       <!-- Konten -->
       <div class="be-content">

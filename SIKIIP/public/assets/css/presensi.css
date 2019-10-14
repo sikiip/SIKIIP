@@ -1,10 +1,22 @@
+th,td{
+    font-family: "Arial";
+    font-size: 12px;
+}
+
+.modal-tittle{
+  color: white;
+}
+
+.form-group{
+  margin-top: 5px;
+}
 .row .col-lg-12 .page-header .fa{
   margin-right: 15px;
   font-size: 36px;
 }
 .row .col-lg-12 .page-header span{
   font-size: 36px;
-  font-style: bold; 
+  font-style: bold;
   margin-right:
 }
 .order-table {
@@ -14,29 +26,29 @@
   background: #eaebec;
   border: #404040 1px solid;
 }
- 
+
 .order-table th {
   padding: 10px 10px;
   border-left:1px solid #000;
   border-bottom: 1px solid #000;
   background: #ededed;
 }
- 
-.order-table th:first-child{  
-  border-left:none;  
+
+.order-table th:first-child{
+  border-left:none;
 }
- 
+
 .order-table tr {
   text-align: center;
   padding-left: 10px;
 }
- 
+
 .order-table td:first-child {
   text-align: left;
   padding-left: 10px;
   border-left: 0;
 }
- 
+
 .order-table td {
   padding: 10px 10px;
   border-top: 2px solid #ffffff;
@@ -46,23 +58,23 @@
   background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa));
   background: -moz-linear-gradient(top, #fbfbfb, #fafafa);
 }
- 
+
 .order-table tr:last-child td {
   border-bottom: 0;
 }
- 
+
 .order-table tr:last-child td:first-child {
   -moz-border-radius-bottomleft: 3px;
   -webkit-border-bottom-left-radius: 3px;
   border-bottom-left-radius: 3px;
 }
- 
+
 .order-table tr:last-child td:last-child {
   -moz-border-radius-bottomright: 3px;
   -webkit-border-bottom-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
- 
+
 .order-table tr:hover td {
   background: #f2f2f2;
   background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0));
@@ -156,12 +168,12 @@
   border: 1px solid transparent;
   border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
   cursor: pointer;
-  
+
   width: 130px
   border-radius: 3px;
   background-color: DodgerBlue;
   margin: 0px 0px -6px 0px;
-  
+
 }
 
 .upload .unggah-data i{
@@ -172,8 +184,8 @@
   margin-left: 87%;
   margin-bottom:10px;
   margin-top: -171px;
-  
- 
+
+
 }
 .download-data button:hover{
     color:white;
@@ -194,7 +206,7 @@
   border: 1px solid transparent;
   border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
   cursor: pointer;
-  
+
   width: 130px
   background-color: DodgerBlue;
   margin-left: 5px;

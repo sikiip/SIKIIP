@@ -14,7 +14,8 @@
       <executable />
     </execution>
   </component>
-  <component name="PhpWorkspaceProjectConfiguration">
+  <component name="PhpDebugGeneral" listening_started="true" />
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7.3">
     <include_path>
       <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
       <path value="$PROJECT_DIR$/vendor/laravel/framework" />
@@ -106,6 +107,7 @@
   <component name="ProjectId" id="1PsFGPXbkhsUu1ldWbbwswADFBv" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/config/app.php" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -114,7 +116,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -129,8 +131,8 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <TestRunner scope="XML" />
+    <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" editBeforeRun="true">
+      <TestRunner configuration_file="$PROJECT_DIR$/config/app.php" scope="Class" use_alternative_bootstrap_file="true" use_alternative_configuration_file="true" />
       <method v="2" />
     </configuration>
   </component>
@@ -152,7 +154,14 @@
       <workItem from="1566742463488" duration="9229000" />
       <workItem from="1566789257628" duration="23377000" />
       <workItem from="1566827032260" duration="8133000" />
-      <workItem from="1566871868056" duration="7624000" />
+      <workItem from="1566871868056" duration="7629000" />
+      <workItem from="1566908810620" duration="1254000" />
+      <workItem from="1566912439977" duration="2534000" />
+      <workItem from="1566932511824" duration="1845000" />
+      <workItem from="1566961916055" duration="5026000" />
+      <workItem from="1567044939318" duration="2204000" />
+      <workItem from="1567077635225" duration="555000" />
+      <workItem from="1567103689309" duration="264000" />
     </task>
     <servers />
   </component>
