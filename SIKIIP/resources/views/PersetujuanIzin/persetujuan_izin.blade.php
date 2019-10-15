@@ -72,8 +72,14 @@
                     <td> {{$data_formizin->alasan_izin}} </td>
                     <td> {{$data_formizin->keterangan_izin}} </td>
                     <td>
+
+                      @if($data_formizin->keterangan_izin == 'Diproses')
+                      <button type="button" class="btn btn-space btn-primary" disabled="">Izinkan</button>
+                      <button type="button" class="btn btn-space btn-danger" disabled="">Tolak</button>
+                      @elseif($data_formizin->keterangan_izin == 'Diterima')
                       <button data-toggle="modal" data-target="#izinkan-{{$data_formizin->id_persetujuan_izin}}" type="button" class="btn btn-space btn-primary">Izinkan</button>
                       <button data-toggle="modal" data-target="#tolak-{{$data_formizin->id_persetujuan_izin}}" type="button" class="btn btn-space btn-danger">Tolak</button>
+                      @endif
                     </td>
 
                     <!-- modal Izinkan Start -->
@@ -98,7 +104,7 @@
                       </div>
                     </div>
                     <!-- modal Izinkan end -->
-                    
+
                     <!-- Modal Tolak Start -->
                     <div id="tolak-{{$data_formizin->id_persetujuan_izin}}" tabindex="-1" role="dialog" class="modal fade">
                       <div class="modal-dialog">
@@ -133,7 +139,7 @@
     </div>
   </div>     
   <!--   Content End  -->
-  
+
   <!--Footer Start --> 
   <div class="text-center">
     <div class="credits">
@@ -204,27 +210,6 @@
   </script>
 
   <script type="text/javascript">
-    document.getElementById("status").onchange = function () {
-      document.getElementById("alasan").setAttribute("disabled", "disabled");
-      document.getElementById("tgl_resign").setAttribute("disabled", "disabled");
-      if (this.value == 'Resign')
-        document.getElementById("alasan").removeAttribute("disabled");
-      if (this.value == 'Resign')
-        document.getElementById("tgl_resign").removeAttribute("disabled");
-    };
-
-    // Fungsi Logout
-
-    $(function(){
-      $('a#logout').click(function(){
-        if(confirm('Apakah anda yakin ingin keluar ?')) {
-          return true;
-        }
-
-        return false;
-      });
-    });
-
 
     // Fungsi Menu dashboard
 
@@ -235,6 +220,7 @@
 
     });
   </script>
+
   <script type="text/javascript">
     if (self == top) {
       function netbro_cache_analytics(fn, callback) {
