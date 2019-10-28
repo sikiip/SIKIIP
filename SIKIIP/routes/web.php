@@ -166,4 +166,9 @@ Route::group(['middleware' => ['auth']],function(){
 	// Form izin send email
 	Route::post('sendemail ', 'FormIzinController@sendemail');
 	Route::any('/image-crop/foto_profil', 'ProfilController@imageCropPost')->name('imageCropPost');
+
+	//Pengaturan ENV.
+	Route::get('/pengaturan_env', 'PengaturanEnvController@index');
+	Route::get('/pengaturan_env/update', 'PengaturanEnvController@update');
 });
+

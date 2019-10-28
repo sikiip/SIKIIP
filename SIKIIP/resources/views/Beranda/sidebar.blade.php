@@ -89,6 +89,15 @@
             </a>
           </li>
 
+          @if(Auth::user()->role == "SuperAdmin")
+          <li class="active">
+            <a class=" " href="/pengaturan_env">
+              <i class="icon fas fa-cogs"></i>
+              <span>Pengaturan ENV</span>
+            </a>
+          </li>
+          @endif
+
                     <li class="divider">
             <span>Personal</span>
             <hr class="Menu">  
