@@ -72,7 +72,7 @@
                     <td> {{$data_formizin->alasan_izin}} </td>
                     <td> {{$data_formizin->keterangan_izin}} </td>
                     <td>
-
+                <tbody>
                       @if($data_formizin->keterangan_izin == 'Diproses')
                       <button type="button" class="btn btn-space btn-primary" disabled="">Izinkan</button>
                       <button type="button" class="btn btn-space btn-danger" disabled="">Tolak</button>
